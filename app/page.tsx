@@ -1,5 +1,6 @@
 import Navbar from "./Components/Navbar";
 import Hero from "./Components/sections/Hero";
+import Projects from "./Components/sections/Projects";
 
 export default function Home() {
   return (
@@ -10,7 +11,7 @@ export default function Home() {
       {/* We'll add these sections next */}
       {/* <About /> */}
       {/* <Skills /> */}
-      {/* <Projects /> */}
+      <Projects />
       {/* <Contact /> */}
     </main>
   );
