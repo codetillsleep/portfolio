@@ -202,8 +202,8 @@ export default function Hero() {
         />
 
         {/* Backgrounds */}
-        <div className="absolute inset-0 bg-linear-to-b from-gray-950 via-black to-black" />
-        <div className="absolute inset-0 radial-glow" />
+        <div className="absolute inset-0 bg-linear-to-b from-gray-950 via-black to-gray-950" />
+        <div className="absolute inset-0 " />
         <div className="absolute inset-0 noise-overlay pointer-events-none" />
 
         {/* Rules */}
@@ -265,16 +265,14 @@ export default function Hero() {
 
           {/* Pills */}
           <div className="anim-4 flex flex-wrap items-center justify-center gap-2 mb-12">
-            {["B.Tech · CSAM", "Applied Mathematics", "4th Semester"].map(
-              (tag) => (
-                <span
-                  key={tag}
-                  className="tag-pill px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-400 text-xs tracking-wide"
-                >
-                  {tag}
-                </span>
-              ),
-            )}
+            {["B.Tech · CSAM", "MERN", "Next.js"].map((tag) => (
+              <span
+                key={tag}
+                className="tag-pill px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-400 text-xs tracking-wide"
+              >
+                {tag}
+              </span>
+            ))}
           </div>
 
           {/* CTA Buttons */}
@@ -296,7 +294,7 @@ export default function Hero() {
           {/* Socials */}
           <div className="anim-6 flex items-center justify-center gap-3 mb-20">
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/codetillsleep"
               target="_blank"
               rel="noopener noreferrer"
               className="social-link w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400"
@@ -305,7 +303,7 @@ export default function Hero() {
               <Github className="w-4 h-4" />
             </a>
             <a
-              href="https://linkedin.com/in/yourprofile"
+              href="https://linkedin.com/in/saksham1864"
               target="_blank"
               rel="noopener noreferrer"
               className="social-link w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400"
@@ -314,7 +312,7 @@ export default function Hero() {
               <Linkedin className="w-4 h-4" />
             </a>
             <a
-              href="mailto:your.email@example.com"
+              href="mailto:saksham1864@gmail.com"
               className="social-link w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400"
               aria-label="Email"
             >

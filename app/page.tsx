@@ -1,18 +1,19 @@
 import Navbar from "./Components/Navbar";
+import About from "./Components/sections/About";
+import Contact from "./Components/sections/Contact";
 import Hero from "./Components/sections/Hero";
 import Projects from "./Components/sections/Projects";
+import Skills from "./Components/sections/Skills";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
       <Hero />
-
-      {/* We'll add these sections next */}
-      {/* <About /> */}
-      {/* <Skills /> */}
       <Projects />
-      {/* <Contact /> */}
+      <About />
+      <Skills />
+      <Contact />
     </main>
   );
 }

@@ -7,7 +7,7 @@ import Image from "next/image";
 const projects = [
   {
     id: "01",
-    title: "ProjectName One",
+    title: "noname",
     description:
       "A high-performance backend system built for scale. Handles millions of requests with sub-100ms latency using intelligent caching, queue-based processing, and microservice architecture.",
     tags: ["Node.js", "PostgreSQL", "Redis", "Docker"],
@@ -17,13 +17,23 @@ const projects = [
   },
   {
     id: "02",
-    title: "ProjectName Two",
+    title: "10gpa.in",
     description:
       "Real-time data pipeline that ingests, transforms, and visualizes streaming events. Built with event-driven architecture and WebSocket connections for live dashboards.",
     tags: ["Python", "Kafka", "FastAPI", "WebSockets"],
     github: "https://github.com/yourusername/project-two",
     live: "https://project-two.vercel.app",
-    image: "/projects/project-two.png",
+    image: "/projects/2.png",
+  },
+  {
+    id: "03",
+    title: "10gpa.in",
+    description:
+      "Real-time data pipeline that ingests, transforms, and visualizes streaming events. Built with event-driven architecture and WebSocket connections for live dashboards.",
+    tags: ["Python", "Kafka", "FastAPI", "WebSockets"],
+    github: "https://github.com/yourusername/project-two",
+    live: "https://project-two.vercel.app",
+    image: "/projects/2.png",
   },
 ];
 
@@ -86,20 +96,6 @@ function ProjectCard({
 
         {/* number badge on image */}
         <span className="project-number">{project.id}</span>
-
-        {/* live pill on image */}
-        {project.live && (
-          <a
-            href={project.live}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="live-badge"
-            aria-label="Live demo"
-          >
-            <span className="live-dot" />
-            Live
-          </a>
-        )}
       </div>
 
       {/* ── Card body ── */}
