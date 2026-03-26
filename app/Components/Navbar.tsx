@@ -38,7 +38,7 @@ export default function Navbar() {
           position: relative;
           font-family: 'DM Sans', sans-serif;
           font-size: 0.875rem;
-          color: #94a3b8;
+          color: white;
           letter-spacing: 0.03em;
           transition: color 0.3s ease;
           text-decoration: none;
@@ -50,7 +50,7 @@ export default function Navbar() {
           left: 0;
           width: 0;
           height: 1px;
-          background: #93c5fd;
+          background: white;
           transition: width 0.3s ease;
         }
         .nav-link:hover { color: #ffffff; }
@@ -61,7 +61,12 @@ export default function Navbar() {
           font-weight: 800;
           font-size: 1.125rem;
           letter-spacing: -0.02em;
-          background: linear-gradient(135deg, #ffffff 0%, #93c5fd 60%);
+           background: linear-gradient(
+            135deg,
+            var(--th-name-grad-start) 0%,
+            var(--th-name-grad-mid)   60%
+            
+          );
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -80,17 +85,18 @@ export default function Navbar() {
           font-size: 0.8125rem;
           font-weight: 500;
           letter-spacing: 0.03em;
-          color: #93c5fd;
-          border: 1px solid rgba(147, 197, 253, 0.25);
-          background: rgba(147, 197, 253, 0.06);
+          color: white;
+          border: 1px solid rgba(52, 211, 153, 0.18);
+          background: rgba(44, 121, 53, 0.18);
           transition: all 0.3s ease;
           text-decoration: none;
         }
         .nav-resume:hover {
-          background: rgba(147, 197, 253, 0.14);
-          border-color: rgba(147, 197, 253, 0.5);
+          background: #D4D4D4;
+          color:black;
+          border-color: rgba(52, 211, 153, 0.18);
           transform: translateY(-1px);
-          box-shadow: 0 4px 20px rgba(37, 99, 235, 0.25);
+          box-shadow: 0 2px 20px rgba(52, 211, 153, 0.18);
         }
 
         .mobile-menu-btn {
@@ -136,9 +142,9 @@ export default function Navbar() {
       `}</style>
 
       <nav
-        className={`fixed top-0 left-0 right-0 z-[999] transition-all duration-500 ${
+        className={`fixed top-0 select-none  left-0 right-0 z-[999] transition-all duration-500 ${
           isScrolled
-            ? "bg-[#030712]/90 backdrop-blur-xl border-b border-white/[0.06]"
+            ? "bg-[#010705]/90 backdrop-blur-xl border-b border-white/[0.06]"
             : "bg-transparent border-b border-transparent"
         }`}
       >

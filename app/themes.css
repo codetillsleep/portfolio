@@ -1,0 +1,62 @@
+/* ═══════════════════════════════════════════════════════════════
+   themes.css — Aurora ONLY (set as default)
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  --th-bg: #020a07;
+  --th-bg-gradient: linear-gradient(to bottom, #010705, #010302, #010604);
+  --th-noise-opacity: 0.022;
+  --th-grid-color: rgba(52, 211, 153, 0.035);
+  --th-grid-size: 88px;
+
+  --th-orb-a: rgba(52, 211, 153, 0.14);
+  --th-orb-b: rgba(20, 184, 166, 0.1);
+
+  --th-divider: linear-gradient(
+    90deg,
+    transparent,
+    rgba(52, 211, 153, 0.25),
+    transparent
+  );
+  --th-corner: rgba(52, 211, 153, 0.18);
+
+  --th-badge-bg: rgba(52, 211, 153, 0.08);
+  --th-badge-border: rgba(52, 211, 153, 0.2);
+  --th-badge-text: #6ee7b7;
+  --th-dot-color: #34d399;
+  --th-dot-glow: rgba(52, 211, 153, 0.55);
+
+  --th-name-grad-start: #ffffff;
+  --th-name-grad-mid: #6ee7b7;
+  --th-name-grad-end: #a7f3d0;
+
+  --th-role-text: #a7f3d0;
+  --th-rule-color: rgba(52, 211, 153, 0.35);
+
+  --th-tag-bg: rgba(52, 211, 153, 0.05);
+  --th-tag-border: rgba(52, 211, 153, 0.12);
+  --th-tag-text: white;
+  --th-tag-hover-bg: rgba(52, 211, 153, 0.12);
+  --th-tag-hover-border: rgba(52, 211, 153, 0.3);
+  --th-tag-hover-text: #6ee7b7;
+
+  --th-btn-primary-bg: linear-gradient(135deg, #065f46, #047857);
+  --th-btn-primary-bg2: linear-gradient(135deg, #047857, #059669, #34d399);
+  --th-btn-primary-glow: rgba(52, 211, 153, 0.18);
+  --th-btn-primary-shadow: rgba(5, 150, 105, 0.4);
+  --th-btn-secondary-border: rgba(52, 211, 153, 0.14);
+  --th-btn-secondary-hover-border: rgba(52, 211, 153, 0.38);
+  --th-btn-secondary-hover-bg: rgba(52, 211, 153, 0.07);
+  --th-btn-secondary-text: #a7f3d0;
+
+  --th-social-border: rgba(52, 211, 153, 0.1);
+  --th-social-bg: rgba(52, 211, 153, 0.04);
+  --th-social-text: rgba(167, 243, 208, 0.4);
+  --th-social-hover-border: rgba(52, 211, 153, 0.38);
+  --th-social-hover-bg: rgba(52, 211, 153, 0.1);
+  --th-social-hover-text: #6ee7b7;
+
+  --th-scroll-text: rgba(52, 211, 153, 0.3);
+  --th-scroll-track: rgba(52, 211, 153, 0.08);
+  --th-scroll-runner-from: rgba(52, 211, 153, 0.55);
+}
