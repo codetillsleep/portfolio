@@ -63,37 +63,33 @@ export default function About() {
         /* ── Section ── */
         .about-section {
           position: relative;
-          background: #030712;
+          background: var(--th-bg);
           padding: 90px 24px 120px;
           overflow: hidden;
         }
-
         .about-section::before {
           content: '';
           position: absolute;
           top: 0; left: 0; right: 0;
           height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(147,197,253,0.2), transparent);
+          background: var(--th-divider);
         }
-
         .about-section::after {
           content: '';
           position: absolute;
           inset: 0;
           background-image:
-            linear-gradient(to right, rgba(147,197,253,0.03) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(147,197,253,0.03) 1px, transparent 1px);
-          background-size: 90px 90px;
+            linear-gradient(to right, var(--th-grid-color) 1px, transparent 1px),
+            linear-gradient(to bottom, var(--th-grid-color) 1px, transparent 1px);
+          background-size: var(--th-grid-size) var(--th-grid-size);
           pointer-events: none;
         }
-
         .about-radial {
           position: absolute;
           inset: 0;
-          background: radial-gradient(ellipse 55% 45% at 80% 30%, rgba(29,78,216,0.08) 0%, transparent 65%);
+          background: radial-gradient(ellipse 55% 45% at 80% 30%, var(--th-orb-a) 0%, transparent 65%);
           pointer-events: none;
         }
-
         .about-inner {
           position: relative;
           z-index: 10;
@@ -109,25 +105,22 @@ export default function About() {
           text-align: center;
           margin-bottom: 72px;
         }
-
         .section-eyebrow {
           display: inline-flex;
           align-items: center;
           gap: 10px;
           font-family: 'DM Sans', sans-serif;
-          font-size: 0.7rem;
+          font-size: 0.68rem;
           font-weight: 500;
-          color: #93c5fd;
-          letter-spacing: 0.2em;
+          color: var(--th-dot-color);
+          letter-spacing: 0.22em;
           text-transform: uppercase;
-          margin-bottom: 20px;
+          margin-bottom: 18px;
         }
         .eyebrow-line {
-          width: 28px;
-          height: 1px;
-          background: rgba(147,197,253,0.4);
+          width: 26px; height: 1px;
+          background: var(--th-rule-color);
         }
-
         .section-title {
           font-family: 'Syne', sans-serif;
           font-weight: 800;
@@ -135,44 +128,41 @@ export default function About() {
           line-height: 1.05;
           letter-spacing: -0.03em;
           color: #ffffff;
-          margin-bottom: 16px;
+          margin-bottom: 14px;
         }
         .section-title span {
-          background: linear-gradient(135deg, #ffffff 0%, #93c5fd 50%, #e0f2fe 100%);
+          background: linear-gradient(135deg, var(--th-name-grad-start) 0%, var(--th-name-grad-mid) 50%, var(--th-name-grad-end) 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
-
         .section-subtitle {
           font-family: 'DM Sans', sans-serif;
-          font-size: 1rem;
+          font-size: 0.9rem;
           font-weight: 300;
-          color: #64748b;
+          color: rgba(167, 243, 208, 0.35);
           max-width: 460px;
-          line-height: 1.7;
+          line-height: 1.75;
         }
 
-        /* ── Main two-col ── */
+        /* ── Grid ── */
         .about-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 28px;
-          margin-bottom: 28px;
+          gap: 24px;
+          margin-bottom: 24px;
         }
-        @media (max-width: 768px) {
-          .about-grid { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
 
         /* ── Bio card ── */
         .bio-card {
-          background: rgba(255,255,255,0.025);
-          border: 1px solid rgba(255,255,255,0.07);
+          background: rgba(52, 211, 153, 0.025);
+          border: 1px solid rgba(52, 211, 153, 0.09);
           border-radius: 20px;
-          padding: 36px;
+          padding: 34px;
           display: flex;
           flex-direction: column;
-          gap: 20px;
+          gap: 18px;
           position: relative;
           overflow: hidden;
         }
@@ -181,236 +171,191 @@ export default function About() {
           position: absolute;
           top: 0; left: 0; right: 0;
           height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(147,197,253,0.2), transparent);
+          background: linear-gradient(90deg, transparent, rgba(52,211,153,0.2), transparent);
         }
-
         .bio-avatar {
-          width: 56px;
-          height: 56px;
+          width: 52px; height: 52px;
           border-radius: 50%;
-          background: linear-gradient(135deg, #1d4ed8, #3b82f6);
-          border: 1px solid rgba(147,197,253,0.2);
+          background: linear-gradient(135deg, #065f46, #047857);
+          border: 1px solid rgba(52, 211, 153, 0.25);
           display: flex;
           align-items: center;
           justify-content: center;
           font-family: 'Syne', sans-serif;
           font-weight: 800;
-          font-size: 1.1rem;
-          color: #fff;
+          font-size: 1rem;
+          color: #6ee7b7;
           letter-spacing: -0.02em;
           flex-shrink: 0;
         }
-
-        .bio-name-wrap {
-          display: flex;
-          flex-direction: column;
-          gap: 2px;
-        }
+        .bio-name-wrap { display: flex; flex-direction: column; gap: 2px; }
         .bio-name {
           font-family: 'Syne', sans-serif;
           font-weight: 700;
-          font-size: 1.15rem;
-          color: #f1f5f9;
+          font-size: 1.1rem;
+          color: #e8fdf2;
           letter-spacing: -0.02em;
         }
         .bio-role {
           font-family: 'DM Sans', sans-serif;
-          font-size: 0.8rem;
+          font-size: 0.78rem;
           font-weight: 400;
-          color: #93c5fd;
+          color: var(--th-badge-text);
           letter-spacing: 0.04em;
         }
-
-        .bio-divider {
-          height: 1px;
-          background: rgba(255,255,255,0.06);
-        }
-
+        .bio-divider { height: 1px; background: rgba(52, 211, 153, 0.07); }
         .bio-text {
           font-family: 'DM Sans', sans-serif;
-          font-size: 0.9rem;
+          font-size: 0.875rem;
           font-weight: 300;
-          color: #64748b;
+          color: rgba(167, 243, 208, 0.38);
           line-height: 1.8;
         }
-
-        .bio-text strong {
-          color: #94a3b8;
-          font-weight: 500;
-        }
-
+        .bio-text strong { color: rgba(167, 243, 208, 0.65); font-weight: 500; }
         .bio-cta {
           display: inline-flex;
           align-items: center;
           gap: 6px;
           font-family: 'DM Sans', sans-serif;
-          font-size: 0.8125rem;
+          font-size: 0.8rem;
           font-weight: 500;
-          color: #93c5fd;
+          color: var(--th-btn-secondary-text);
           text-decoration: none;
           letter-spacing: 0.02em;
-          transition: gap 0.25s ease, opacity 0.25s ease;
           margin-top: auto;
+          transition: gap 0.25s ease, color 0.25s ease;
         }
-        .bio-cta:hover { gap: 10px; opacity: 0.8; }
+        .bio-cta:hover { gap: 10px; color: var(--th-badge-text); }
 
         /* ── Stats card ── */
         .stats-card {
-          background: rgba(255,255,255,0.025);
-          border: 1px solid rgba(255,255,255,0.07);
+          background: rgba(52, 211, 153, 0.025);
+          border: 1px solid rgba(52, 211, 153, 0.09);
           border-radius: 20px;
-          padding: 36px;
+          padding: 34px;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          gap: 24px;
+          gap: 22px;
         }
-
         .stats-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 2px;
           border-radius: 12px;
           overflow: hidden;
-          border: 1px solid rgba(255,255,255,0.06);
+          border: 1px solid rgba(52, 211, 153, 0.07);
           flex: 1;
         }
-
         .stat-cell {
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding: 28px 16px;
-          background: rgba(255,255,255,0.02);
+          padding: 26px 14px;
+          background: rgba(52, 211, 153, 0.02);
           text-align: center;
           transition: background 0.3s ease;
         }
-        .stat-cell:hover {
-          background: rgba(147,197,253,0.04);
-        }
-
+        .stat-cell:hover { background: rgba(52, 211, 153, 0.05); }
         .stat-value {
           font-family: 'Syne', sans-serif;
           font-weight: 800;
           font-size: clamp(1.8rem, 3vw, 2.4rem);
           letter-spacing: -0.03em;
-          background: linear-gradient(135deg, #ffffff 0%, #93c5fd 60%);
+          background: linear-gradient(135deg, #ffffff 0%, var(--th-name-grad-mid) 60%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
           line-height: 1;
           margin-bottom: 6px;
         }
-
         .stat-label {
           font-family: 'DM Sans', sans-serif;
-          font-size: 0.72rem;
+          font-size: 0.68rem;
           font-weight: 400;
-          color: #475569;
-          letter-spacing: 0.05em;
+          color: rgba(52, 211, 153, 0.3);
+          letter-spacing: 0.08em;
           text-transform: uppercase;
         }
-
-        /* currently section inside stats card */
-        .currently-wrap {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-        }
+        .currently-wrap { display: flex; flex-direction: column; gap: 8px; }
         .currently-label {
           font-family: 'DM Sans', sans-serif;
-          font-size: 0.68rem;
+          font-size: 0.65rem;
           font-weight: 500;
-          color: #334155;
-          letter-spacing: 0.15em;
+          color: rgba(52, 211, 153, 0.25);
+          letter-spacing: 0.18em;
           text-transform: uppercase;
         }
-        .currently-items {
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-        }
+        .currently-items { display: flex; flex-direction: column; gap: 6px; }
         .currently-item {
           display: flex;
           align-items: center;
           gap: 8px;
           font-family: 'DM Sans', sans-serif;
-          font-size: 0.825rem;
+          font-size: 0.82rem;
           font-weight: 300;
-          color: #64748b;
+          color: rgba(167, 243, 208, 0.38);
         }
         .currently-dot {
-          width: 5px;
-          height: 5px;
+          width: 5px; height: 5px;
           border-radius: 50%;
-          background: #93c5fd;
+          background: var(--th-dot-color);
+          box-shadow: 0 0 5px var(--th-dot-glow);
           flex-shrink: 0;
-          opacity: 0.6;
+          opacity: 0.7;
         }
 
-        /* ── Skills section ── */
+        /* ── Skills strip ── */
         .skills-wrap {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 16px;
+          gap: 14px;
         }
-        @media (max-width: 900px) {
-          .skills-wrap { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 480px) {
-          .skills-wrap { grid-template-columns: 1fr 1fr; }
-        }
+        @media (max-width: 900px) { .skills-wrap { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px)  { .skills-wrap { grid-template-columns: 1fr 1fr; } }
 
         .skill-card {
-          background: rgba(255,255,255,0.025);
-          border: 1px solid rgba(255,255,255,0.07);
+          background: rgba(52, 211, 153, 0.025);
+          border: 1px solid rgba(52, 211, 153, 0.08);
           border-radius: 16px;
-          padding: 24px 20px;
+          padding: 22px 18px;
           transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
         }
         .skill-card:hover {
-          border-color: rgba(147,197,253,0.2);
-          background: rgba(147,197,253,0.03);
+          border-color: rgba(52, 211, 153, 0.22);
+          background: rgba(52, 211, 153, 0.045);
           transform: translateY(-3px);
         }
-
         .skill-icon {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 34px;
-          height: 34px;
+          width: 32px; height: 32px;
           border-radius: 9px;
-          border: 1px solid rgba(147,197,253,0.15);
-          background: rgba(147,197,253,0.06);
-          color: #93c5fd;
-          margin-bottom: 14px;
+          border: 1px solid rgba(52, 211, 153, 0.18);
+          background: rgba(52, 211, 153, 0.07);
+          color: var(--th-badge-text);
+          margin-bottom: 12px;
         }
-
         .skill-category {
           font-family: 'Syne', sans-serif;
           font-weight: 700;
-          font-size: 0.825rem;
-          color: #cbd5e1;
+          font-size: 0.8rem;
+          color: #e8fdf2;
           letter-spacing: -0.01em;
           margin-bottom: 10px;
         }
-
-        .skill-items {
-          display: flex;
-          flex-direction: column;
-          gap: 5px;
-        }
+        .skill-items { display: flex; flex-direction: column; gap: 4px; }
         .skill-item {
           font-family: 'DM Sans', sans-serif;
-          font-size: 0.8rem;
+          font-size: 0.78rem;
           font-weight: 300;
-          color: #475569;
+          color: rgba(167, 243, 208, 0.35);
           letter-spacing: 0.02em;
           transition: color 0.2s ease;
         }
-        .skill-card:hover .skill-item { color: #64748b; }
+        .skill-card:hover .skill-item { color: rgba(167, 243, 208, 0.55); }
 
         /* ── Animations ── */
         .anim-up {
@@ -428,8 +373,7 @@ export default function About() {
       `}</style>
 
       <section id="about" className="about-section">
-        <div className="about-radial" />
-
+        {/* <div className="about-radial" /> */}
         <div className="about-inner" ref={sectionRef}>
           {/* Heading */}
           <div className="about-heading-wrap">
@@ -455,7 +399,6 @@ export default function About() {
 
           {/* Bio + Stats */}
           <div className="about-grid">
-            {/* Bio */}
             <div className={`bio-card anim-up d2 ${inView ? "visible" : ""}`}>
               <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
                 <div className="bio-avatar">SS</div>
@@ -464,9 +407,7 @@ export default function About() {
                   <p className="bio-role">FullStack Developer</p>
                 </div>
               </div>
-
               <div className="bio-divider" />
-
               <p className="bio-text">
                 Hey! I'm a <strong>B.Tech student</strong> in Computer Science &
                 Applied Mathematics, currently in my{" "}
@@ -485,14 +426,12 @@ export default function About() {
                 <strong>internships and collaborations</strong> where I can
                 contribute meaningfully and grow alongside smart people.
               </p>
-
               <a href="#contact" className="bio-cta">
                 Let's connect
                 <ArrowUpRight style={{ width: 14, height: 14 }} />
               </a>
             </div>
 
-            {/* Stats */}
             <div className={`stats-card anim-up d3 ${inView ? "visible" : ""}`}>
               <div className="stats-grid">
                 {stats.map((s) => (
@@ -502,7 +441,6 @@ export default function About() {
                   </div>
                 ))}
               </div>
-
               <div className="currently-wrap">
                 <p className="currently-label">Currently</p>
                 <div className="currently-items">
@@ -530,7 +468,7 @@ export default function About() {
                 className={`skill-card anim-up d${i + 1} ${skillsInView ? "visible" : ""}`}
               >
                 <div className="skill-icon">
-                  <skill.icon style={{ width: 16, height: 16 }} />
+                  <skill.icon style={{ width: 15, height: 15 }} />
                 </div>
                 <p className="skill-category">{skill.category}</p>
                 <div className="skill-items">

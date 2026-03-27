@@ -1,0 +1,43 @@
+"use client";
+
+export default function Footer() {
+  const year = new Date().getFullYear();
+
+  return (
+    <>
+      <style>{`
+        .footer-minimal {
+          width: 100%;
+          padding: 28px 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: var(--th-bg, #000);
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.82rem;
+          font-weight: 300;
+          color: rgba(255, 255, 255, 0.38);
+          letter-spacing: 0.01em;
+        }
+
+        .footer-minimal a {
+          color: inherit;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+          text-decoration-color: rgba(255,255,255,0.28);
+          transition: color 0.2s ease, text-decoration-color 0.2s ease;
+        }
+
+        .footer-minimal a:hover {
+          color: rgba(255, 255, 255, 0.72);
+          text-decoration-color: rgba(255,255,255,0.55);
+        }
+      `}</style>
+
+      <footer className="footer-minimal">
+        © {year} &nbsp;Saksham Sharma.&nbsp;
+        <a href="/humans.txt">Crafted by yours truly</a>
+      </footer>
+    </>
+  );
+}

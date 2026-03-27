@@ -1,0 +1,37 @@
+
+
+The humans.txt file explains the team, technology, and
+graphic assets behind this site humanstxt.org.
+
+_______________________________________________________________________________
+
+DEVELOPER 
+
+Saksham Sharma
+Hand crafted design & full-stack development
+
+github.com/codetillsleep
+linkedin.com/in/saksham1864
+saksham1864@gmail.com
+
+_______________________________________________________________________________
+
+TECHNOLOGY  
+
+Next.js
+React
+TypeScript
+Tailwind CSS
+
+_______________________________________________________________________________
+
+FONTS 
+
+Syne
+DM Sans
+
+_______________________________________________________________________________
+
+THANK YOU 
+
+Built with care, coffee, and a lot of CSS variables.

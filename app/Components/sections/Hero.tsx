@@ -311,15 +311,6 @@ export default function Hero() {
           style={{ opacity: "var(--th-noise-opacity)", zIndex: 2 }}
         />
 
-        {/* Radial glow */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: `radial-gradient(ellipse 80% 60% at 50% 30%, var(--th-orb-b) 0%, transparent 70%)`,
-            zIndex: 2,
-          }}
-        />
-
         {/* Dividers */}
         <div
           className="absolute top-0 left-0 right-0 h-px divider-line"
@@ -361,7 +352,7 @@ export default function Hero() {
           }}
         >
           {/* Badge */}
-          <div className="anim-1 inline-flex items-center gap-2 mb-10">
+          {/* <div className="anim-1 inline-flex items-center gap-2 mb-10">
             <span
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs tracking-widest uppercase"
               style={{
@@ -380,13 +371,13 @@ export default function Hero() {
               />
               Available for Opportunities · 2026
             </span>
-          </div>
+          </div> */}
 
           {/* Name */}
           <h1 className="gradient-name text-5xl md:text-7xl lg:text-8xl mb-5 tracking-tight leading-none anim-2">
-            SAKSHAM
+            Saksham
             <br />
-            SHARMA
+            Sharma
           </h1>
 
           {/* Role */}

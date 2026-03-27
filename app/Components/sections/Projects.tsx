@@ -7,17 +7,19 @@ import Image from "next/image";
 const projects = [
   {
     id: "01",
-    title: "noname",
+    title: "Danta",
+    featured: true,
     description:
-      "A high-performance backend system built for scale. Handles millions of requests with sub-100ms latency using intelligent caching, queue-based processing, and microservice architecture.",
+      "A high-performance backend system built for scale. Handles millions of requests with sub-100ms latency using intelligent caching, queue-based processing, and microservice architecture. Designed to grow horizontally with zero-downtime deployments.",
     tags: ["Node.js", "PostgreSQL", "Redis", "Docker"],
     github: "https://github.com/yourusername/project-one",
     live: "https://project-one.vercel.app",
-    image: "/projects/project-one.png", // place your image in /public/projects/
+    image: "/projects/project-one.png",
   },
   {
     id: "02",
-    title: "10gpa.in",
+    title: "10gpa",
+    featured: false,
     description:
       "Real-time data pipeline that ingests, transforms, and visualizes streaming events. Built with event-driven architecture and WebSocket connections for live dashboards.",
     tags: ["Python", "Kafka", "FastAPI", "WebSockets"],
@@ -27,17 +29,18 @@ const projects = [
   },
   {
     id: "03",
-    title: "10gpa.in",
+    title: "Nexus",
+    featured: false,
     description:
       "Real-time data pipeline that ingests, transforms, and visualizes streaming events. Built with event-driven architecture and WebSocket connections for live dashboards.",
     tags: ["Python", "Kafka", "FastAPI", "WebSockets"],
-    github: "https://github.com/yourusername/project-two",
-    live: "https://project-two.vercel.app",
-    image: "/projects/2.png",
+    github: "https://github.com/yourusername/project-three",
+    live: "https://project-three.vercel.app",
+    image: "/projects/3.png",
   },
 ];
 
-function useInView(threshold = 0.15) {
+function useInView(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
 
@@ -57,12 +60,15 @@ function useInView(threshold = 0.15) {
   return { ref, inView };
 }
 
+/* ─── Every project uses this horizontal card, flip=true mirrors it ─── */
 function ProjectCard({
   project,
   index,
+  flip,
 }: {
   project: (typeof projects)[0];
   index: number;
+  flip: boolean;
 }) {
   const { ref, inView } = useInView(0.1);
   const [hovered, setHovered] = useState(false);
@@ -72,15 +78,16 @@ function ProjectCard({
       ref={ref}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="project-card"
+      className={`featured-card${flip ? " featured-card--flip" : ""}`}
       style={{
         opacity: inView ? 1 : 0,
         transform: inView ? "translateY(0)" : "translateY(40px)",
-        transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 0.12}s, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${index * 0.12}s`,
+        transition: `opacity 0.8s cubic-bezier(0.16,1,0.3,1) ${index * 0.08}s,
+                     transform 0.8s cubic-bezier(0.16,1,0.3,1) ${index * 0.08}s`,
       }}
     >
-      {/* ── Image preview ── */}
-      <div className="card-image-wrap">
+      {/* Image side */}
+      <div className="featured-image-wrap">
         <Image
           src={project.image}
           alt={project.title}
@@ -91,18 +98,24 @@ function ProjectCard({
             transition: "transform 0.6s cubic-bezier(0.16,1,0.3,1)",
           }}
         />
-        {/* overlay so image doesn't overpower */}
-        <div className="card-image-overlay" />
-
-        {/* number badge on image */}
+        <div
+          className={`featured-image-overlay${flip ? " featured-image-overlay--flip" : ""}`}
+        />
         <span className="project-number">{project.id}</span>
+
+        {/* Featured pill only on first card */}
+        {project.featured && (
+          <span className="featured-pill">
+            <span className="featured-dot" />
+            Featured
+          </span>
+        )}
       </div>
 
-      {/* ── Card body ── */}
-      <div className="card-body">
-        {/* title + links row */}
-        <div className="card-top">
-          <h3 className="project-title">{project.title}</h3>
+      {/* Content side */}
+      <div className="featured-body">
+        <div className="card-top" style={{ marginBottom: 14 }}>
+          <h3 className="featured-title">{project.title}</h3>
           <div className="card-links">
             <a
               href={project.github}
@@ -111,7 +124,7 @@ function ProjectCard({
               className="card-icon-link"
               aria-label="GitHub"
             >
-              <Github style={{ width: 14, height: 14 }} />
+              <Github style={{ width: 13, height: 13 }} />
             </a>
             {project.live && (
               <a
@@ -121,17 +134,15 @@ function ProjectCard({
                 className="card-icon-link"
                 aria-label="Live"
               >
-                <ArrowUpRight style={{ width: 14, height: 14 }} />
+                <ArrowUpRight style={{ width: 13, height: 13 }} />
               </a>
             )}
           </div>
         </div>
 
-        {/* description */}
-        <p className="project-desc">{project.description}</p>
+        <p className="featured-desc">{project.description}</p>
 
-        {/* tags */}
-        <div className="tag-row">
+        <div className="tag-row" style={{ marginTop: "auto" }}>
           {project.tags.map((tag) => (
             <span key={tag} className="project-tag">
               {tag}
@@ -140,8 +151,10 @@ function ProjectCard({
         </div>
       </div>
 
-      {/* hover glow */}
-      <div className="card-glow" style={{ opacity: hovered ? 1 : 0 }} />
+      <div
+        className={`card-glow featured-glow${flip ? " featured-glow--flip" : ""}`}
+        style={{ opacity: hovered ? 1 : 0 }}
+      />
     </div>
   );
 }
@@ -155,30 +168,27 @@ export default function Projects() {
         /* ── Section ── */
         .projects-section {
           position: relative;
-          background: #030712;
           padding: 90px 24px 140px;
           overflow: hidden;
+          background: var(--th-bg);
         }
-
         .projects-section::before {
           content: '';
           position: absolute;
           top: 0; left: 0; right: 0;
           height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(147,197,253,0.2), transparent);
+          background: var(--th-divider);
         }
-
         .projects-section::after {
           content: '';
           position: absolute;
           inset: 0;
           background-image:
-            linear-gradient(to right, rgba(147,197,253,0.03) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(147,197,253,0.03) 1px, transparent 1px);
-          background-size: 90px 90px;
+            linear-gradient(to right, var(--th-grid-color) 1px, transparent 1px),
+            linear-gradient(to bottom, var(--th-grid-color) 1px, transparent 1px);
+          background-size: var(--th-grid-size) var(--th-grid-size);
           pointer-events: none;
         }
-
         .projects-inner {
           position: relative;
           z-index: 10;
@@ -192,128 +202,161 @@ export default function Projects() {
           flex-direction: column;
           align-items: center;
           text-align: center;
-          margin-bottom: 72px;
+          margin-bottom: 68px;
         }
-
         .section-eyebrow {
           display: inline-flex;
           align-items: center;
           gap: 10px;
           font-family: 'DM Sans', sans-serif;
-          font-size: 0.7rem;
+          font-size: 0.68rem;
           font-weight: 500;
-          color: #93c5fd;
-          letter-spacing: 0.2em;
+          color: var(--th-dot-color);
+          letter-spacing: 0.22em;
           text-transform: uppercase;
-          margin-bottom: 20px;
+          margin-bottom: 18px;
         }
         .eyebrow-line {
-          width: 28px;
-          height: 1px;
-          background: rgba(147,197,253,0.4);
+          width: 26px; height: 1px;
+          background: var(--th-rule-color);
         }
-
         .section-title {
           font-family: 'Syne', sans-serif;
           font-weight: 800;
-          font-size: clamp(2.2rem, 5vw, 3.75rem);
+          font-size: clamp(2rem, 5vw, 3.25rem);
           line-height: 1.05;
           letter-spacing: -0.03em;
           color: #ffffff;
-          margin-bottom: 16px;
+          margin-bottom: 14px;
         }
         .section-title span {
-          background: linear-gradient(135deg, #ffffff 0%, #93c5fd 50%, #e0f2fe 100%);
-          background-size: 200% auto;
+          background: linear-gradient(135deg, var(--th-name-grad-start) 0%, var(--th-name-grad-mid) 50%, var(--th-name-grad-end) 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
-
         .section-subtitle {
           font-family: 'DM Sans', sans-serif;
-          font-size: 1rem;
+          font-size: 0.9rem;
           font-weight: 300;
-          color: #64748b;
-          max-width: 480px;
-          line-height: 1.7;
-          letter-spacing: 0.01em;
+          color: var(--th-role-text);
+          opacity: 0.5;
+          max-width: 440px;
+          line-height: 1.75;
         }
 
-        /* ── Grid ── */
-        .projects-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 20px;
-        }
-        @media (max-width: 768px) {
-          .projects-grid { grid-template-columns: 1fr; }
-        }
-
-        /* ── Card ── */
-        .project-card {
-          position: relative;
-          background: rgba(255,255,255,0.025);
-          border: 1px solid rgba(255,255,255,0.07);
-          border-radius: 20px;
+        /* ── Layout: single column, full-width cards ── */
+        .projects-layout {
           display: flex;
           flex-direction: column;
-          cursor: default;
-          transition: border-color 0.4s ease, background 0.4s ease, transform 0.35s cubic-bezier(0.16,1,0.3,1);
-          overflow: hidden;
-        }
-        .project-card:hover {
-          border-color: rgba(147,197,253,0.2);
-          background: rgba(147,197,253,0.025);
-          transform: translateY(-6px);
+          gap: 18px;
         }
 
-        /* ── Image ── */
-        .card-image-wrap {
+        /* ── Featured / horizontal card ── */
+        .featured-card {
           position: relative;
-          width: 100%;
-          aspect-ratio: 16 / 9;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          min-height: 320px;
+          cursor: default;
+          background: rgba(255,255,255,0.02);
+          border: 1px solid var(--th-tag-border);
+          border-radius: 20px;
           overflow: hidden;
-          background: #0a0f1e;
-          /* bottom corners stay square, top corners match card */
-          border-radius: 0;
+          transition: border-color 0.4s ease, background 0.4s ease,
+                      transform 0.35s cubic-bezier(0.16,1,0.3,1);
+        }
+        /* Flip: swap column order so image goes right, text goes left */
+        .featured-card--flip {
+          direction: rtl;
+        }
+        .featured-card--flip > * {
+          direction: ltr;
         }
 
+        .featured-card:hover {
+          border-color: var(--th-tag-hover-border);
+          background: rgba(255,255,255,0.03);
+          transform: translateY(-5px);
+        }
+
+        @media (max-width: 768px) {
+          .featured-card,
+          .featured-card--flip {
+            grid-template-columns: 1fr;
+            direction: ltr;
+          }
+          .featured-card--flip > * { direction: ltr; }
+        }
+
+        /* ── Image panel ── */
+        .featured-image-wrap {
+          position: relative;
+          overflow: hidden;
+          background: #010f08;
+          min-height: 280px;
+        }
         .card-image {
           object-fit: cover;
           object-position: top;
         }
 
-        /* dark gradient over image bottom so body blends in */
-        .card-image-overlay {
+        /* Normal: fade right into content */
+        .featured-image-overlay {
           position: absolute;
           inset: 0;
           background: linear-gradient(
-            to bottom,
-            rgba(3,7,18,0) 40%,
-            rgba(3,7,18,0.7) 100%
+            to right,
+            rgba(2,10,7,0) 40%,
+            rgba(2,10,7,0.88) 100%
+          );
+        }
+        /* Flipped: fade left into content */
+        .featured-image-overlay--flip {
+          background: linear-gradient(
+            to left,
+            rgba(2,10,7,0) 40%,
+            rgba(2,10,7,0.88) 100%
           );
         }
 
-        /* project number — top-left over image */
-        .project-number {
-          position: absolute;
-          top: 14px;
-          left: 16px;
-          font-family: 'Syne', sans-serif;
-          font-size: 0.7rem;
-          font-weight: 700;
-          color: rgba(147,197,253,0.6);
-          letter-spacing: 0.12em;
-          background: rgba(3,7,18,0.6);
-          backdrop-filter: blur(8px);
-          padding: 4px 10px;
-          border-radius: 999px;
-          border: 1px solid rgba(147,197,253,0.15);
+        @media (max-width: 768px) {
+          .featured-image-wrap { min-height: 220px; }
+          .featured-image-overlay,
+          .featured-image-overlay--flip {
+            background: linear-gradient(to bottom, rgba(2,10,7,0) 40%, rgba(2,10,7,0.88) 100%);
+          }
         }
 
-        /* live badge — top-right over image */
-        .live-badge {
+        /* ── Content panel ── */
+        .featured-body {
+          padding: 32px 30px 30px;
+          display: flex;
+          
+          flex-direction: column;
+          justify-content: center;
+        }
+        .featured-title {
+          font-family: 'Syne', sans-serif;
+          font-weight: 700;
+          font-size: 1.45rem;
+          color: #e8fdf2;
+          letter-spacing: -0.025em;
+          line-height: 1.2;
+        }
+        .featured-desc {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.875rem;
+          font-weight: 300;
+          color: var(--th-role-text);
+          opacity: 0.5;
+          line-height: 1.8;
+          margin-bottom: 22px;
+          flex: 1;
+        }
+
+        /* ── Featured pill ── */
+        .featured-pill {
           position: absolute;
           top: 14px;
           right: 16px;
@@ -321,119 +364,98 @@ export default function Projects() {
           align-items: center;
           gap: 5px;
           font-family: 'DM Sans', sans-serif;
-          font-size: 0.68rem;
+          font-size: 0.65rem;
           font-weight: 500;
-          color: #86efac;
-          background: rgba(3,7,18,0.6);
+          color: var(--th-badge-text);
+            : var(--th-badge-bg);
           backdrop-filter: blur(8px);
-          padding: 4px 10px;
+          padding: 3px 10px;
           border-radius: 999px;
-          border: 1px solid rgba(134,239,172,0.2);
-          text-decoration: none;
-          letter-spacing: 0.06em;
-          transition: all 0.25s ease;
+          border: 1px solid var(--th-badge-border);
+          letter-spacing: 0.08em;
+          z-index: 2;
         }
-        .live-badge:hover {
-          background: rgba(134,239,172,0.1);
-          border-color: rgba(134,239,172,0.4);
-        }
-        .live-dot {
-          width: 5px;
-          height: 5px;
+        .featured-dot {
+          width: 5px; height: 5px;
           border-radius: 50%;
-          background: #4ade80;
-          box-shadow: 0 0 6px rgba(74,222,128,0.8);
-          animation: livePulse 2s ease-in-out infinite;
+          background: var(--th-dot-color);
+          box-shadow: 0 0 6px var(--th-dot-glow);
+          animation: featuredPulse 2s ease-in-out infinite;
         }
-        @keyframes livePulse {
+        @keyframes featuredPulse {
           0%, 100% { opacity: 1; }
-          50% { opacity: 0.4; }
+          50%       { opacity: 0.35; }
         }
 
-        /* ── Card body ── */
-        .card-body {
-          padding: 24px 28px 28px;
-          display: flex;
-          flex-direction: column;
-          flex: 1;
-        }
-
+        /* ── Shared elements ── */
         .card-top {
           display: flex;
           align-items: flex-start;
           justify-content: space-between;
-          gap: 12px;
+          gap: 10px;
           margin-bottom: 10px;
         }
-
-        .project-title {
-          font-family: 'Syne', sans-serif;
-          font-weight: 700;
-          font-size: 1.15rem;
-          color: #f1f5f9;
-          letter-spacing: -0.02em;
-          line-height: 1.25;
-        }
-
         .card-links {
           display: flex;
           align-items: center;
-          gap: 7px;
+          gap: 6px;
           flex-shrink: 0;
         }
-
         .card-icon-link {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 30px;
-          height: 30px;
+          width: 28px; height: 28px;
           border-radius: 50%;
-          border: 1px solid rgba(255,255,255,0.08);
-          background: rgba(255,255,255,0.03);
-          color: #475569;
+          border: 1px solid var(--th-social-border);
+          background: var(--th-social-bg);
+          color: var(--th-social-text);
           text-decoration: none;
           transition: all 0.25s ease;
         }
         .card-icon-link:hover {
-          border-color: rgba(147,197,253,0.4);
-          background: rgba(147,197,253,0.1);
-          color: #93c5fd;
-          transform: translateY(-2px);
+          border-color: var(--th-social-hover-border);
+          background: var(--th-social-hover-bg);
+          color: var(--th-social-hover-text);
+          transform: translateY(-1px);
         }
-
-        .project-desc {
-          font-family: 'DM Sans', sans-serif;
-          font-size: 0.875rem;
-          font-weight: 300;
-          color: #64748b;
-          line-height: 1.75;
-          margin-bottom: 20px;
-          flex: 1;
+        .project-number {
+          position: absolute;
+          top: 13px; left: 14px;
+          z-index: 2;
+          font-family: 'Syne', sans-serif;
+          font-size: 0.65rem;
+          font-weight: 700;
+          color: var(--th-badge-text);
+          letter-spacing: 0.1em;
+          background: rgba(2,10,7,0.65);
+          backdrop-filter: blur(8px);
+          padding: 3px 9px;
+          border-radius: 999px;
+          border: 1px solid var(--th-badge-border);
+          opacity: 0.75;
         }
-
         .tag-row {
           display: flex;
           flex-wrap: wrap;
-          gap: 6px;
+          gap: 5px;
           margin-top: auto;
         }
-
         .project-tag {
           font-family: 'DM Sans', sans-serif;
-          font-size: 0.7rem;
+          font-size: 0.65rem;
           font-weight: 500;
-          color: #475569;
-          padding: 3px 10px;
+          color: var(--th-tag-text);
+          padding: 2px 9px;
           border-radius: 999px;
-          border: 1px solid rgba(255,255,255,0.07);
-          background: rgba(255,255,255,0.03);
+          border: 1px solid var(--th-tag-border);
+          background: var(--th-tag-bg);
           letter-spacing: 0.03em;
           transition: all 0.2s ease;
         }
-        .project-card:hover .project-tag {
-          border-color: rgba(147,197,253,0.15);
-          color: #64748b;
+        .featured-card:hover .project-tag {
+          border-color: var(--th-tag-hover-border);
+          color: var(--th-tag-hover-text);
         }
 
         /* ── Hover glow ── */
@@ -441,46 +463,52 @@ export default function Projects() {
           position: absolute;
           inset: 0;
           border-radius: 20px;
-          background: radial-gradient(ellipse 70% 40% at 50% 0%, rgba(37,99,235,0.07) 0%, transparent 70%);
           pointer-events: none;
           transition: opacity 0.4s ease;
+        }
+        .featured-glow {
+          background: radial-gradient(ellipse 50% 80% at 0% 50%, var(--th-btn-primary-glow) 0%, transparent 70%);
+        }
+        .featured-glow--flip {
+          background: radial-gradient(ellipse 50% 80% at 100% 50%, var(--th-btn-primary-glow) 0%, transparent 70%);
         }
 
         /* ── CTA ── */
         .projects-cta {
           display: flex;
           justify-content: center;
-          margin-top: 60px;
+          margin-top: 56px;
         }
-
         .cta-link {
           display: inline-flex;
           align-items: center;
-          gap: 8px;
+          gap: 7px;
           font-family: 'DM Sans', sans-serif;
-          font-size: 0.875rem;
+          font-size: 0.82rem;
           font-weight: 500;
-          color: #93c5fd;
+          color: var(--th-btn-secondary-text);
           text-decoration: none;
-          padding: 12px 28px;
+          padding: 11px 26px;
           border-radius: 999px;
-          border: 1px solid rgba(147,197,253,0.22);
-          background: rgba(147,197,253,0.06);
+          border: 1px solid var(--th-btn-secondary-border);
+          background: transparent;
           letter-spacing: 0.03em;
           transition: all 0.3s ease;
         }
         .cta-link:hover {
-          background: rgba(147,197,253,0.14);
-          border-color: rgba(147,197,253,0.45);
+          background: var(--th-btn-secondary-hover-bg);
+          border-color: var(--th-btn-secondary-hover-border);
+          color: var(--th-badge-text);
           transform: translateY(-2px);
-          box-shadow: 0 8px 30px rgba(37,99,235,0.2);
+          box-shadow: 0 8px 30px var(--th-btn-primary-glow);
         }
 
         /* ── Heading animations ── */
         .heading-anim {
           opacity: 0;
           transform: translateY(24px);
-          transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+          transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+                      transform 0.8s cubic-bezier(0.16,1,0.3,1);
         }
         .heading-anim.visible { opacity: 1; transform: translateY(0); }
         .heading-anim.d1 { transition-delay: 0s; }
@@ -490,7 +518,7 @@ export default function Projects() {
 
       <section id="projects" className="projects-section">
         <div className="projects-inner">
-          {/* Heading */}
+          {/* ── Heading ── */}
           <div className="projects-heading-wrap" ref={headingRef}>
             <div
               className={`section-eyebrow heading-anim d1 ${headingInView ? "visible" : ""}`}
@@ -512,14 +540,19 @@ export default function Projects() {
             </p>
           </div>
 
-          {/* Cards */}
-          <div className="projects-grid">
+          {/* ── Cards — all horizontal, alternating sides ── */}
+          <div className="projects-layout">
             {projects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index}
+                flip={index % 2 !== 0} /* 0=normal, 1=flip, 2=normal … */
+              />
             ))}
           </div>
 
-          {/* CTA */}
+          {/* ── CTA ── */}
           <div className="projects-cta">
             <a
               href="https://github.com/yourusername"
@@ -527,9 +560,9 @@ export default function Projects() {
               rel="noopener noreferrer"
               className="cta-link"
             >
-              <Github style={{ width: 15, height: 15 }} />
+              <Github style={{ width: 14, height: 14 }} />
               View all on GitHub
-              <ArrowUpRight style={{ width: 14, height: 14 }} />
+              <ArrowUpRight style={{ width: 13, height: 13 }} />
             </a>
           </div>
         </div>

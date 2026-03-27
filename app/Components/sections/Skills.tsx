@@ -1,16 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import {
-  Code2,
-  Server,
-  Database,
-  GitBranch,
-  Globe,
-  Terminal,
-  Layers,
-  Cpu,
-} from "lucide-react";
+import { Code2, Server, Database, Terminal, Globe, Cpu } from "lucide-react";
 
 function useInView(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
@@ -34,8 +25,8 @@ const skillGroups = [
   {
     category: "Languages",
     icon: Code2,
-    color: "rgba(147,197,253,0.9)",
-    glow: "rgba(59,130,246,0.15)",
+    color: "rgba(110, 231, 183, 0.9)",
+    glow: "rgba(52, 211, 153, 0.12)",
     skills: [
       { name: "TypeScript", level: 85 },
       { name: "Python", level: 80 },
@@ -47,8 +38,8 @@ const skillGroups = [
   {
     category: "Backend",
     icon: Server,
-    color: "rgba(167,243,208,0.9)",
-    glow: "rgba(52,211,153,0.12)",
+    color: "rgba(167, 243, 208, 0.9)",
+    glow: "rgba(52, 211, 153, 0.1)",
     skills: [
       { name: "Node.js", level: 88 },
       { name: "FastAPI", level: 75 },
@@ -60,8 +51,8 @@ const skillGroups = [
   {
     category: "Databases",
     icon: Database,
-    color: "rgba(253,186,116,0.9)",
-    glow: "rgba(251,146,60,0.12)",
+    color: "rgba(110, 231, 183, 0.85)",
+    glow: "rgba(20, 184, 166, 0.12)",
     skills: [
       { name: "PostgreSQL", level: 78 },
       { name: "MongoDB", level: 80 },
@@ -73,8 +64,8 @@ const skillGroups = [
   {
     category: "DevOps",
     icon: Terminal,
-    color: "rgba(216,180,254,0.9)",
-    glow: "rgba(168,85,247,0.12)",
+    color: "rgba(167, 243, 208, 0.9)",
+    glow: "rgba(52, 211, 153, 0.08)",
     skills: [
       { name: "Docker", level: 72 },
       { name: "Git", level: 90 },
@@ -86,8 +77,8 @@ const skillGroups = [
   {
     category: "Frontend",
     icon: Globe,
-    color: "rgba(147,197,253,0.9)",
-    glow: "rgba(59,130,246,0.15)",
+    color: "rgba(110, 231, 183, 0.9)",
+    glow: "rgba(52, 211, 153, 0.1)",
     skills: [
       { name: "React", level: 80 },
       { name: "Next.js", level: 78 },
@@ -99,8 +90,8 @@ const skillGroups = [
   {
     category: "CS Fundamentals",
     icon: Cpu,
-    color: "rgba(167,243,208,0.9)",
-    glow: "rgba(52,211,153,0.12)",
+    color: "rgba(167, 243, 208, 0.9)",
+    glow: "rgba(20, 184, 166, 0.1)",
     skills: [
       { name: "DSA", level: 75 },
       { name: "System Design", level: 65 },
@@ -155,10 +146,10 @@ function SkillBar({
           className="skill-bar-fill"
           style={{
             width: visible ? `${level}%` : "0%",
-            background: `linear-gradient(90deg, ${color.replace("0.9", "0.5")}, ${color})`,
+            background: `linear-gradient(90deg, ${color.replace("0.9", "0.4")}, ${color})`,
             transition: `width 1.1s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
             boxShadow: visible
-              ? `0 0 10px ${color.replace("0.9", "0.4")}`
+              ? `0 0 8px ${color.replace("0.9", "0.35")}`
               : "none",
           }}
         />
@@ -180,16 +171,14 @@ function SkillCard({
   return (
     <div
       className="skill-card"
-      style={
-        {
-          opacity: visible ? 1 : 0,
-          transform: visible ? "translateY(0)" : "translateY(36px)",
-          transition: `opacity 0.75s cubic-bezier(0.16,1,0.3,1) ${index * 0.08}s, transform 0.75s cubic-bezier(0.16,1,0.3,1) ${index * 0.08}s`,
-          "--card-glow": group.glow,
-        } as React.CSSProperties
-      }
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(36px)",
+        transition: `opacity 0.75s cubic-bezier(0.16,1,0.3,1) ${index * 0.08}s,
+                     transform 0.75s cubic-bezier(0.16,1,0.3,1) ${index * 0.08}s`,
+        ["--card-glow" as string]: group.glow,
+      }}
     >
-      {/* Header */}
       <div className="skill-card-header">
         <div
           className="skill-card-icon"
@@ -199,12 +188,10 @@ function SkillCard({
             background: group.glow,
           }}
         >
-          <Icon style={{ width: 15, height: 15 }} />
+          <Icon style={{ width: 14, height: 14 }} />
         </div>
         <span className="skill-card-category">{group.category}</span>
       </div>
-
-      {/* Bars */}
       <div className="skill-bars">
         {group.skills.map((skill, i) => (
           <SkillBar
@@ -232,7 +219,7 @@ export default function Skills() {
         /* ── Section ── */
         .skills-section {
           position: relative;
-          background: #030712;
+          background: var(--th-bg);
           padding: 90px 24px 120px;
           overflow: hidden;
         }
@@ -241,26 +228,24 @@ export default function Skills() {
           position: absolute;
           top: 0; left: 0; right: 0;
           height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(147,197,253,0.2), transparent);
+          background: var(--th-divider);
         }
         .skills-section::after {
           content: '';
           position: absolute;
           inset: 0;
           background-image:
-            linear-gradient(to right, rgba(147,197,253,0.03) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(147,197,253,0.03) 1px, transparent 1px);
-          background-size: 90px 90px;
+            linear-gradient(to right, var(--th-grid-color) 1px, transparent 1px),
+            linear-gradient(to bottom, var(--th-grid-color) 1px, transparent 1px);
+          background-size: var(--th-grid-size) var(--th-grid-size);
           pointer-events: none;
         }
-
         .skills-radial {
           position: absolute;
           inset: 0;
-          background: radial-gradient(ellipse 50% 40% at 20% 60%, rgba(29,78,216,0.07) 0%, transparent 65%);
+          background: radial-gradient(ellipse 50% 40% at 20% 60%, var(--th-orb-b) 0%, transparent 65%);
           pointer-events: none;
         }
-
         .skills-inner {
           position: relative;
           z-index: 10;
@@ -276,25 +261,19 @@ export default function Skills() {
           text-align: center;
           margin-bottom: 72px;
         }
-
         .section-eyebrow {
           display: inline-flex;
           align-items: center;
           gap: 10px;
           font-family: 'DM Sans', sans-serif;
-          font-size: 0.7rem;
+          font-size: 0.68rem;
           font-weight: 500;
-          color: #93c5fd;
-          letter-spacing: 0.2em;
+          color: var(--th-dot-color);
+          letter-spacing: 0.22em;
           text-transform: uppercase;
-          margin-bottom: 20px;
+          margin-bottom: 18px;
         }
-        .eyebrow-line {
-          width: 28px;
-          height: 1px;
-          background: rgba(147,197,253,0.4);
-        }
-
+        .eyebrow-line { width: 26px; height: 1px; background: var(--th-rule-color); }
         .section-title {
           font-family: 'Syne', sans-serif;
           font-weight: 800;
@@ -302,134 +281,109 @@ export default function Skills() {
           line-height: 1.05;
           letter-spacing: -0.03em;
           color: #ffffff;
-          margin-bottom: 16px;
+          margin-bottom: 14px;
         }
         .section-title span {
-          background: linear-gradient(135deg, #ffffff 0%, #93c5fd 50%, #e0f2fe 100%);
+          background: linear-gradient(135deg, var(--th-name-grad-start) 0%, var(--th-name-grad-mid) 50%, var(--th-name-grad-end) 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
-
         .section-subtitle {
           font-family: 'DM Sans', sans-serif;
-          font-size: 1rem;
+          font-size: 0.9rem;
           font-weight: 300;
-          color: #64748b;
+          color: rgba(167, 243, 208, 0.35);
           max-width: 460px;
-          line-height: 1.7;
+          line-height: 1.75;
         }
 
         /* ── Cards grid ── */
         .skill-cards-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 16px;
-          margin-bottom: 20px;
+          gap: 14px;
+          margin-bottom: 18px;
         }
-        @media (max-width: 900px) {
-          .skill-cards-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 560px) {
-          .skill-cards-grid { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 900px) { .skill-cards-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 560px) { .skill-cards-grid { grid-template-columns: 1fr; } }
 
         /* ── Skill card ── */
         .skill-card {
-          background: rgba(255,255,255,0.025);
-          border: 1px solid rgba(255,255,255,0.07);
+          background: rgba(52, 211, 153, 0.025);
+          border: 1px solid rgba(52, 211, 153, 0.08);
           border-radius: 18px;
-          padding: 26px 24px;
+          padding: 24px 22px;
           display: flex;
           flex-direction: column;
-          gap: 18px;
-          transition: border-color 0.35s ease, background 0.35s ease, transform 0.35s cubic-bezier(0.16,1,0.3,1);
+          gap: 16px;
           position: relative;
           overflow: hidden;
+          transition: border-color 0.35s ease, background 0.35s ease,
+                      transform 0.35s cubic-bezier(0.16,1,0.3,1);
         }
         .skill-card::before {
           content: '';
           position: absolute;
           inset: 0;
           border-radius: 18px;
-          background: radial-gradient(ellipse 70% 50% at 50% 0%, var(--card-glow, rgba(59,130,246,0.1)) 0%, transparent 70%);
+          background: radial-gradient(ellipse 70% 50% at 50% 0%, var(--card-glow, rgba(52,211,153,0.08)) 0%, transparent 70%);
           opacity: 0;
           transition: opacity 0.4s ease;
           pointer-events: none;
         }
         .skill-card:hover {
-          border-color: rgba(255,255,255,0.12);
-          background: rgba(255,255,255,0.035);
+          border-color: rgba(52, 211, 153, 0.22);
+          background: rgba(52, 211, 153, 0.045);
           transform: translateY(-4px);
         }
         .skill-card:hover::before { opacity: 1; }
 
-        .skill-card-header {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
-
+        .skill-card-header { display: flex; align-items: center; gap: 10px; }
         .skill-card-icon {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 32px;
-          height: 32px;
+          width: 30px; height: 30px;
           border-radius: 8px;
           border: 1px solid;
           flex-shrink: 0;
         }
-
         .skill-card-category {
           font-family: 'Syne', sans-serif;
           font-weight: 700;
-          font-size: 0.875rem;
-          color: #cbd5e1;
+          font-size: 0.82rem;
+          color: #e8fdf2;
           letter-spacing: -0.01em;
         }
 
         /* ── Skill bars ── */
-        .skill-bars {
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-        }
-
-        .skill-bar-row {
-          display: flex;
-          flex-direction: column;
-          gap: 5px;
-        }
-
+        .skill-bars { display: flex; flex-direction: column; gap: 9px; }
+        .skill-bar-row { display: flex; flex-direction: column; gap: 4px; }
         .skill-bar-header {
           display: flex;
           align-items: center;
           justify-content: space-between;
         }
-
         .skill-bar-name {
           font-family: 'DM Sans', sans-serif;
-          font-size: 0.775rem;
+          font-size: 0.75rem;
           font-weight: 400;
-          color: #64748b;
+          color: rgba(167, 243, 208, 0.38);
           letter-spacing: 0.01em;
         }
-
         .skill-bar-pct {
           font-family: 'Syne', sans-serif;
-          font-size: 0.68rem;
+          font-size: 0.65rem;
           font-weight: 700;
           letter-spacing: 0.04em;
         }
-
         .skill-bar-track {
           height: 3px;
-          background: rgba(255,255,255,0.06);
+          background: rgba(52, 211, 153, 0.08);
           border-radius: 999px;
           overflow: hidden;
         }
-
         .skill-bar-fill {
           height: 100%;
           border-radius: 999px;
@@ -437,60 +391,56 @@ export default function Skills() {
 
         /* ── Tools strip ── */
         .tools-section {
-          background: rgba(255,255,255,0.02);
-          border: 1px solid rgba(255,255,255,0.06);
+          background: rgba(52, 211, 153, 0.02);
+          border: 1px solid rgba(52, 211, 153, 0.07);
           border-radius: 18px;
-          padding: 28px 32px;
+          padding: 26px 30px;
           margin-top: 4px;
         }
-
         .tools-label {
           font-family: 'DM Sans', sans-serif;
-          font-size: 0.68rem;
+          font-size: 0.65rem;
           font-weight: 500;
-          color: #334155;
-          letter-spacing: 0.18em;
+          color: rgba(52, 211, 153, 0.25);
+          letter-spacing: 0.2em;
           text-transform: uppercase;
-          margin-bottom: 18px;
+          margin-bottom: 16px;
           text-align: center;
         }
-
         .tools-wrap {
           display: flex;
           flex-wrap: wrap;
-          gap: 8px;
+          gap: 7px;
           justify-content: center;
         }
-
         .tool-pill {
           font-family: 'DM Sans', sans-serif;
-          font-size: 0.775rem;
+          font-size: 0.75rem;
           font-weight: 400;
-          color: #475569;
-          padding: 5px 14px;
+          color: rgba(167, 243, 208, 0.35);
+          padding: 4px 13px;
           border-radius: 999px;
-          border: 1px solid rgba(255,255,255,0.07);
-          background: rgba(255,255,255,0.03);
+          border: 1px solid rgba(52, 211, 153, 0.08);
+          background: rgba(52, 211, 153, 0.025);
           letter-spacing: 0.02em;
-          transition: all 0.25s ease;
+          transition: opacity 0.5s ease, transform 0.5s ease,
+                      color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
           opacity: 0;
           transform: translateY(10px);
         }
-        .tool-pill.visible {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        .tool-pill.visible { opacity: 1; transform: translateY(0); }
         .tool-pill:hover {
-          color: #93c5fd;
-          border-color: rgba(147,197,253,0.25);
-          background: rgba(147,197,253,0.06);
+          color: var(--th-badge-text);
+          border-color: rgba(52, 211, 153, 0.28);
+          background: rgba(52, 211, 153, 0.07);
         }
 
         /* ── Heading anim ── */
         .h-anim {
           opacity: 0;
           transform: translateY(24px);
-          transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+          transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+                      transform 0.8s cubic-bezier(0.16,1,0.3,1);
         }
         .h-anim.visible { opacity: 1; transform: translateY(0); }
         .h-anim.d0 { transition-delay: 0s; }
@@ -499,8 +449,7 @@ export default function Skills() {
       `}</style>
 
       <section id="skills" className="skills-section">
-        <div className="skills-radial" />
-
+        {/* <div className="skills-radial" /> */}
         <div className="skills-inner">
           {/* Heading */}
           <div className="skills-heading-wrap" ref={headingRef}>
@@ -545,7 +494,7 @@ export default function Skills() {
                   key={tool}
                   className={`tool-pill ${toolsInView ? "visible" : ""}`}
                   style={{
-                    transition: `opacity 0.5s ease ${i * 40}ms, transform 0.5s ease ${i * 40}ms, color 0.25s ease, border-color 0.25s ease, background 0.25s ease`,
+                    transitionDelay: toolsInView ? `${i * 40}ms` : "0ms",
                   }}
                 >
                   {tool}
