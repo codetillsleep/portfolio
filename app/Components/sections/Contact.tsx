@@ -8,6 +8,7 @@ import {
   ArrowUpRight,
   Send,
   MapPin,
+  Twitter,
 } from "lucide-react";
 
 function useInView(threshold = 0.15) {
@@ -31,27 +32,27 @@ function useInView(threshold = 0.15) {
 const socials = [
   {
     label: "GitHub",
-    handle: "@yourusername",
-    href: "https://github.com/yourusername",
+    handle: "@codetillsleep",
+    href: "https://github.com/codetillsleep",
     icon: Github,
   },
   {
     label: "LinkedIn",
     handle: "Saksham Sharma",
-    href: "https://linkedin.com/in/yourprofile",
+    href: "https://linkedin.com/in/saksham1864",
     icon: Linkedin,
   },
   {
     label: "Email",
-    handle: "your@email.com",
-    href: "mailto:your@email.com",
+    handle: "saksham1864@email.com",
+    href: "mailto:saksham1864@email.com",
     icon: Mail,
   },
   {
     label: "Twitter",
-    handle: "@yourusername",
-    href: "https://twitter.com/yourusername",
-    icon: Linkedin,
+    handle: "@codetillsleep",
+    href: "https://twitter.com/codetillsleep",
+    icon: Twitter,
   },
 ];
 

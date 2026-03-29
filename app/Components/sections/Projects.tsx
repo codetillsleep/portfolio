@@ -7,36 +7,25 @@ import Image from "next/image";
 const projects = [
   {
     id: "01",
-    title: "Danta",
-    featured: true,
-    description:
-      "A high-performance backend system built for scale. Handles millions of requests with sub-100ms latency using intelligent caching, queue-based processing, and microservice architecture. Designed to grow horizontally with zero-downtime deployments.",
-    tags: ["Node.js", "PostgreSQL", "Redis", "Docker"],
-    github: "https://github.com/yourusername/project-one",
-    live: "https://project-one.vercel.app",
-    image: "/projects/project-one.png",
-  },
-  {
-    id: "02",
     title: "10gpa",
     featured: false,
     description:
       "Real-time data pipeline that ingests, transforms, and visualizes streaming events. Built with event-driven architecture and WebSocket connections for live dashboards.",
-    tags: ["Python", "Kafka", "FastAPI", "WebSockets"],
-    github: "https://github.com/yourusername/project-two",
-    live: "https://project-two.vercel.app",
-    image: "/projects/2.png",
+    tags: ["Typescript", "Express", "MongoDB", "Redis"],
+    github: "https://github.com/codetillsleep/notesapp2.0",
+    live: "https://10gpa.in",
+    image: "/projects/project-one.png",
   },
   {
-    id: "03",
+    id: "02",
     title: "Nexus",
     featured: false,
     description:
       "Real-time data pipeline that ingests, transforms, and visualizes streaming events. Built with event-driven architecture and WebSocket connections for live dashboards.",
-    tags: ["Python", "Kafka", "FastAPI", "WebSockets"],
+    tags: ["JavaScript", "Express", "MongoDB", "WebSockets"],
     github: "https://github.com/yourusername/project-three",
-    live: "https://project-three.vercel.app",
-    image: "/projects/3.png",
+
+    image: "/projects/image.png",
   },
 ];
 
@@ -60,7 +49,83 @@ function useInView(threshold = 0.1) {
   return { ref, inView };
 }
 
-/* ─── Every project uses this horizontal card, flip=true mirrors it ─── */
+function BrowserMockup({
+  src,
+  alt,
+  hovered,
+  liveUrl,
+}: {
+  src: string;
+  alt: string;
+  hovered: boolean;
+  liveUrl?: string;
+}) {
+  const displayUrl = liveUrl
+    ? liveUrl.replace(/^https?:\/\//, "")
+    : `${alt.toLowerCase()}.app`;
+
+  return (
+    <div className="browser-mockup">
+      {/* Browser chrome bar */}
+      <div className="browser-bar">
+        <div className="browser-dots">
+          <span className="browser-dot dot-red" />
+          <span className="browser-dot dot-yellow" />
+          <span className="browser-dot dot-green" />
+        </div>
+        <div className="browser-address">
+          <svg
+            width="8"
+            height="8"
+            viewBox="0 0 24 24"
+            fill="none"
+            style={{ opacity: 0.35, flexShrink: 0 }}
+          >
+            <path
+              d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+              fill="currentColor"
+            />
+          </svg>
+          <span className="browser-url">{displayUrl}</span>
+        </div>
+        <div className="browser-actions">
+          <svg
+            width="10"
+            height="10"
+            viewBox="0 0 24 24"
+            fill="none"
+            style={{ opacity: 0.2 }}
+          >
+            <path
+              d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+
+      {/* Screenshot — width/height let the image set its own natural ratio */}
+      <div className="browser-viewport">
+        <Image
+          src={src}
+          alt={alt}
+          width={1280}
+          height={800}
+          sizes="(max-width: 768px) 100vw, 55vw"
+          className="browser-screenshot"
+          style={{
+            transform: hovered
+              ? "scale(1.025) translateY(-8px)"
+              : "scale(1) translateY(0)",
+            transition: "transform 0.8s cubic-bezier(0.16,1,0.3,1)",
+          }}
+        />
+        {/* <div className="browser-scanlines" /> */}
+      </div>
+    </div>
+  );
+}
+
 function ProjectCard({
   project,
   index,
@@ -82,40 +147,32 @@ function ProjectCard({
       style={{
         opacity: inView ? 1 : 0,
         transform: inView ? "translateY(0)" : "translateY(40px)",
-        transition: `opacity 0.8s cubic-bezier(0.16,1,0.3,1) ${index * 0.08}s,
-                     transform 0.8s cubic-bezier(0.16,1,0.3,1) ${index * 0.08}s`,
+        transition: `opacity 0.8s cubic-bezier(0.16,1,0.3,1) ${index * 0.1}s,
+                     transform 0.8s cubic-bezier(0.16,1,0.3,1) ${index * 0.1}s`,
       }}
     >
-      {/* Image side */}
+      {/* Image / Browser Mockup side */}
       <div className="featured-image-wrap">
-        <Image
-          src={project.image}
-          alt={project.title}
-          fill
-          className="card-image"
-          style={{
-            transform: hovered ? "scale(1.04)" : "scale(1)",
-            transition: "transform 0.6s cubic-bezier(0.16,1,0.3,1)",
-          }}
-        />
-        <div
-          className={`featured-image-overlay${flip ? " featured-image-overlay--flip" : ""}`}
-        />
+        <div className="mockup-container">
+          <BrowserMockup
+            src={project.image}
+            alt={project.title}
+            hovered={hovered}
+            liveUrl={project.live}
+          />
+        </div>
         <span className="project-number">{project.id}</span>
-
-        {/* Featured pill only on first card */}
-        {project.featured && (
-          <span className="featured-pill">
-            <span className="featured-dot" />
-            Featured
-          </span>
-        )}
       </div>
 
       {/* Content side */}
       <div className="featured-body">
-        <div className="card-top" style={{ marginBottom: 14 }}>
-          <h3 className="featured-title">{project.title}</h3>
+        <div className="card-accent-line" />
+
+        <div className="card-top">
+          <div>
+            <p className="card-eyebrow">Project {project.id}</p>
+            <h3 className="featured-title">{project.title}</h3>
+          </div>
           <div className="card-links">
             <a
               href={project.github}
@@ -131,7 +188,7 @@ function ProjectCard({
                 href={project.live}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="card-icon-link"
+                className="card-icon-link card-icon-link--live"
                 aria-label="Live"
               >
                 <ArrowUpRight style={{ width: 13, height: 13 }} />
@@ -142,13 +199,24 @@ function ProjectCard({
 
         <p className="featured-desc">{project.description}</p>
 
-        <div className="tag-row" style={{ marginTop: "auto" }}>
+        <div className="tag-row">
           {project.tags.map((tag) => (
             <span key={tag} className="project-tag">
               {tag}
             </span>
           ))}
         </div>
+
+        {project.live && (
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="view-project-btn"
+          >
+            View Project <ArrowUpRight style={{ width: 12, height: 12 }} />
+          </a>
+        )}
       </div>
 
       <div
@@ -245,39 +313,39 @@ export default function Projects() {
           line-height: 1.75;
         }
 
-        /* ── Layout: single column, full-width cards ── */
+        /* ── Layout ── */
         .projects-layout {
           display: flex;
           flex-direction: column;
-          gap: 18px;
+          gap: 22px;
         }
 
         /* ── Featured / horizontal card ── */
         .featured-card {
           position: relative;
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          min-height: 320px;
+          grid-template-columns: 1.1fr 0.9fr;
+          min-height: 340px;
           cursor: default;
-          background: rgba(255,255,255,0.02);
+          background: rgba(255,255,255,0.018);
           border: 1px solid var(--th-tag-border);
           border-radius: 20px;
           overflow: hidden;
           transition: border-color 0.4s ease, background 0.4s ease,
-                      transform 0.35s cubic-bezier(0.16,1,0.3,1);
+                      transform 0.35s cubic-bezier(0.16,1,0.3,1),
+                      box-shadow 0.4s ease;
         }
-        /* Flip: swap column order so image goes right, text goes left */
         .featured-card--flip {
           direction: rtl;
         }
         .featured-card--flip > * {
           direction: ltr;
         }
-
         .featured-card:hover {
           border-color: var(--th-tag-hover-border);
           background: rgba(255,255,255,0.03);
           transform: translateY(-5px);
+          box-shadow: 0 20px 60px rgba(0,0,0,0.35);
         }
 
         @media (max-width: 768px) {
@@ -286,120 +354,203 @@ export default function Projects() {
             grid-template-columns: 1fr;
             direction: ltr;
           }
-          .featured-card--flip > * { direction: ltr; }
         }
 
-        /* ── Image panel ── */
+        /* ── Image / Mockup panel ── */
         .featured-image-wrap {
           position: relative;
           overflow: hidden;
-          background: #010f08;
-          min-height: 280px;
+          background: #060f0a;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 20px 16px 0 20px;
         }
-        .card-image {
-          object-fit: cover;
-          object-position: top;
+        .featured-card--flip .featured-image-wrap {
+          padding: 20px 20px 0 16px;
+        }
+        .mockup-container {
+          width: 100%;
+          align-self: flex-end; /* mockup sits at bottom, chrome at top */
+        }
+        .browser-mockup {
+          width: 100%;
+          border-radius: 10px;
+          overflow: hidden;
+          border: 1px solid rgba(255,255,255,0.08);
+          box-shadow:
+            0 0 0 1px rgba(0,0,0,0.5),
+            0 8px 32px rgba(0,0,0,0.5),
+            0 2px 8px rgba(0,0,0,0.4),
+            inset 0 1px 0 rgba(255,255,255,0.06);
+          background: #111;
         }
 
-        /* Normal: fade right into content */
-        .featured-image-overlay {
+        /* Browser chrome bar */
+        .browser-bar {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 7px 10px;
+          background: #1a1a1a;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          min-height: 28px;
+        }
+        .browser-dots {
+          display: flex;
+          gap: 4px;
+          flex-shrink: 0;
+        }
+        .browser-dot {
+          width: 7px; height: 7px;
+          border-radius: 50%;
+        }
+        .dot-red    { background: #ff5f57; }
+        .dot-yellow { background: #febc2e; }
+        .dot-green  { background: #28c840; }
+
+        .browser-address {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(255,255,255,0.07);
+          border-radius: 5px;
+          padding: 2px 8px;
+          max-width: 260px;
+          margin: 0 auto;
+        }
+        .browser-lock {
+          font-size: 0.5rem;
+          color: rgba(255,255,255,0.25);
+          transform: scaleX(-1);
+          display: inline-block;
+        }
+        .browser-url {
+          font-family: 'DM Mono', 'Fira Mono', monospace;
+          font-size: 0.6rem;
+          color: rgba(255,255,255,0.3);
+          letter-spacing: 0.01em;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .browser-actions {
+          flex-shrink: 0;
+          font-size: 0.7rem;
+          color: rgba(255,255,255,0.2);
+        }
+        .browser-reload {
+          display: inline-block;
+          width: 16px;
+          text-align: center;
+        }
+
+        /* Browser viewport (screenshot area) */
+        .browser-viewport {
+          position: relative;
+          width: 100%;
+          overflow: hidden;
+          background: #0a0f0c;
+          line-height: 0; /* remove inline-block gap under img */
+        }
+        .browser-screenshot {
+          width: 100% !important;
+          height: auto !important;
+          display: block;
+          object-fit: cover;
+          object-position: top center;
+        }
+        .browser-scanlines {
           position: absolute;
           inset: 0;
-          background: linear-gradient(
-            to right,
-            rgba(2,10,7,0) 40%,
-            rgba(2,10,7,0.88) 100%
+          background: repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0,0,0,0.03) 2px,
+            rgba(0,0,0,0.03) 4px
           );
-        }
-        /* Flipped: fade left into content */
-        .featured-image-overlay--flip {
-          background: linear-gradient(
-            to left,
-            rgba(2,10,7,0) 40%,
-            rgba(2,10,7,0.88) 100%
-          );
+          pointer-events: none;
+          z-index: 2;
         }
 
-        @media (max-width: 768px) {
-          .featured-image-wrap { min-height: 220px; }
-          .featured-image-overlay,
-          .featured-image-overlay--flip {
-            background: linear-gradient(to bottom, rgba(2,10,7,0) 40%, rgba(2,10,7,0.88) 100%);
-          }
+        /* Project number badge */
+        .project-number {
+          position: absolute;
+          top: 12px; left: 12px;
+          z-index: 2;
+          font-family: 'Syne', sans-serif;
+          font-size: 0.62rem;
+          font-weight: 700;
+          color: var(--th-badge-text);
+          letter-spacing: 0.1em;
+          background: rgba(2,10,7,0.75);
+          backdrop-filter: blur(8px);
+          padding: 3px 9px;
+          border-radius: 999px;
+          border: 1px solid var(--th-badge-border);
+          opacity: 0.75;
         }
 
         /* ── Content panel ── */
         .featured-body {
           padding: 32px 30px 30px;
           display: flex;
-          
           flex-direction: column;
           justify-content: center;
+          gap: 0;
+          border-left: 1px solid rgba(255,255,255,0.04);
         }
+        .featured-card--flip .featured-body {
+          border-left: none;
+          border-right: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .card-accent-line {
+          width: 28px;
+          height: 2px;
+          border-radius: 2px;
+          background: linear-gradient(90deg, var(--th-name-grad-start), var(--th-name-grad-end));
+          margin-bottom: 16px;
+          opacity: 0.7;
+        }
+
+        .card-eyebrow {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.6rem;
+          font-weight: 500;
+          color: var(--th-dot-color);
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          margin-bottom: 4px;
+          opacity: 0.7;
+        }
+
         .featured-title {
           font-family: 'Syne', sans-serif;
           font-weight: 700;
-          font-size: 1.45rem;
+          font-size: 1.55rem;
           color: #e8fdf2;
-          letter-spacing: -0.025em;
-          line-height: 1.2;
-        }
-        .featured-desc {
-          font-family: 'DM Sans', sans-serif;
-          font-size: 0.875rem;
-          font-weight: 300;
-          color: var(--th-role-text);
-          opacity: 0.5;
-          line-height: 1.8;
-          margin-bottom: 22px;
-          flex: 1;
+          letter-spacing: -0.03em;
+          line-height: 1.1;
+          margin-bottom: 0;
         }
 
-        /* ── Featured pill ── */
-        .featured-pill {
-          position: absolute;
-          top: 14px;
-          right: 16px;
-          display: inline-flex;
-          align-items: center;
-          gap: 5px;
-          font-family: 'DM Sans', sans-serif;
-          font-size: 0.65rem;
-          font-weight: 500;
-          color: var(--th-badge-text);
-            : var(--th-badge-bg);
-          backdrop-filter: blur(8px);
-          padding: 3px 10px;
-          border-radius: 999px;
-          border: 1px solid var(--th-badge-border);
-          letter-spacing: 0.08em;
-          z-index: 2;
-        }
-        .featured-dot {
-          width: 5px; height: 5px;
-          border-radius: 50%;
-          background: var(--th-dot-color);
-          box-shadow: 0 0 6px var(--th-dot-glow);
-          animation: featuredPulse 2s ease-in-out infinite;
-        }
-        @keyframes featuredPulse {
-          0%, 100% { opacity: 1; }
-          50%       { opacity: 0.35; }
-        }
-
-        /* ── Shared elements ── */
         .card-top {
           display: flex;
           align-items: flex-start;
           justify-content: space-between;
           gap: 10px;
-          margin-bottom: 10px;
+          margin-bottom: 16px;
         }
         .card-links {
           display: flex;
           align-items: center;
           gap: 6px;
           flex-shrink: 0;
+          margin-top: 4px;
         }
         .card-icon-link {
           display: flex;
@@ -419,34 +570,32 @@ export default function Projects() {
           color: var(--th-social-hover-text);
           transform: translateY(-1px);
         }
-        .project-number {
-          position: absolute;
-          top: 13px; left: 14px;
-          z-index: 2;
-          font-family: 'Syne', sans-serif;
-          font-size: 0.65rem;
-          font-weight: 700;
-          color: var(--th-badge-text);
-          letter-spacing: 0.1em;
-          background: rgba(2,10,7,0.65);
-          backdrop-filter: blur(8px);
-          padding: 3px 9px;
-          border-radius: 999px;
-          border: 1px solid var(--th-badge-border);
-          opacity: 0.75;
+        .card-icon-link--live:hover {
+          box-shadow: 0 4px 14px var(--th-btn-primary-glow);
         }
+
+        .featured-desc {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.875rem;
+          font-weight: 300;
+          color: var(--th-role-text);
+          opacity: 0.5;
+          line-height: 1.8;
+          margin-bottom: 20px;
+        }
+
         .tag-row {
           display: flex;
           flex-wrap: wrap;
           gap: 5px;
-          margin-top: auto;
+          margin-bottom: 20px;
         }
         .project-tag {
           font-family: 'DM Sans', sans-serif;
-          font-size: 0.65rem;
+          font-size: 0.62rem;
           font-weight: 500;
           color: var(--th-tag-text);
-          padding: 2px 9px;
+          padding: 3px 10px;
           border-radius: 999px;
           border: 1px solid var(--th-tag-border);
           background: var(--th-tag-bg);
@@ -458,6 +607,30 @@ export default function Projects() {
           color: var(--th-tag-hover-text);
         }
 
+        /* View project CTA */
+        .view-project-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.72rem;
+          font-weight: 500;
+          color: var(--th-dot-color);
+          text-decoration: none;
+          letter-spacing: 0.04em;
+          opacity: 0;
+          transform: translateX(-6px);
+          transition: opacity 0.3s ease, transform 0.3s ease, color 0.2s ease;
+          width: fit-content;
+        }
+        .featured-card:hover .view-project-btn {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        .view-project-btn:hover {
+          color: #e8fdf2;
+        }
+
         /* ── Hover glow ── */
         .card-glow {
           position: absolute;
@@ -467,10 +640,10 @@ export default function Projects() {
           transition: opacity 0.4s ease;
         }
         .featured-glow {
-          background: radial-gradient(ellipse 50% 80% at 0% 50%, var(--th-btn-primary-glow) 0%, transparent 70%);
+          background: radial-gradient(ellipse 55% 80% at 0% 50%, var(--th-btn-primary-glow) 0%, transparent 70%);
         }
         .featured-glow--flip {
-          background: radial-gradient(ellipse 50% 80% at 100% 50%, var(--th-btn-primary-glow) 0%, transparent 70%);
+          background: radial-gradient(ellipse 55% 80% at 100% 50%, var(--th-btn-primary-glow) 0%, transparent 70%);
         }
 
         /* ── CTA ── */
@@ -514,6 +687,32 @@ export default function Projects() {
         .heading-anim.d1 { transition-delay: 0s; }
         .heading-anim.d2 { transition-delay: 0.1s; }
         .heading-anim.d3 { transition-delay: 0.2s; }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+          .featured-card,
+          .featured-card--flip {
+            grid-template-columns: 1fr;
+            direction: ltr;
+          }
+          .featured-card--flip > * { direction: ltr; }
+          .featured-image-wrap,
+          .featured-card--flip .featured-image-wrap {
+            padding: 16px;
+            border-left: none;
+            border-right: none;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+          }
+          .featured-body,
+          .featured-card--flip .featured-body {
+            border-left: none;
+            border-right: none;
+          }
+          .view-project-btn {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
       `}</style>
 
       <section id="projects" className="projects-section">
@@ -540,14 +739,14 @@ export default function Projects() {
             </p>
           </div>
 
-          {/* ── Cards — all horizontal, alternating sides ── */}
+          {/* ── Cards ── */}
           <div className="projects-layout">
             {projects.map((project, index) => (
               <ProjectCard
                 key={project.id}
                 project={project}
                 index={index}
-                flip={index % 2 !== 0} /* 0=normal, 1=flip, 2=normal … */
+                flip={index % 2 !== 0}
               />
             ))}
           </div>
@@ -555,7 +754,7 @@ export default function Projects() {
           {/* ── CTA ── */}
           <div className="projects-cta">
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/codetillsleep"
               target="_blank"
               rel="noopener noreferrer"
               className="cta-link"

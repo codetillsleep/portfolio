@@ -1,9 +1,5 @@
-/* ═══════════════════════════════════════════════════════════════
-   themes.css — Aurora ONLY (set as default)
-   ═══════════════════════════════════════════════════════════════ */
-
 :root {
-  --th-bg: #020a07;
+  --th-bg: #010302;
   --th-bg-gradient: linear-gradient(to bottom, #010705, #010302, #010604);
   --th-noise-opacity: 0.022;
   --th-grid-color: rgba(52, 211, 153, 0.035);
@@ -11,7 +7,6 @@
 
   --th-orb-a: rgba(52, 211, 153, 0.14);
   --th-orb-b: rgba(20, 184, 166, 0.1);
-
   --th-divider: linear-gradient(
     90deg,
     transparent,

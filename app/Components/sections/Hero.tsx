@@ -302,7 +302,7 @@ export default function Hero() {
         {/* Gradient overlay */}
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "var(--th-bg-gradient)", zIndex: 1 }}
+          style={{ background: "var(--th-bg)", zIndex: 1 }}
         />
 
         {/* Noise */}

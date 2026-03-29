@@ -27,7 +27,7 @@ const skills = [
   {
     category: "Languages",
     icon: Code2,
-    items: ["TypeScript", "Python", "Go", "Java", "C++"],
+    items: ["TypeScript", "Python", "C++"],
   },
   {
     category: "Backend",
@@ -37,7 +37,7 @@ const skills = [
   {
     category: "Databases",
     icon: Database,
-    items: ["PostgreSQL", "MongoDB", "Redis", "MySQL", "Prisma"],
+    items: ["MongoDB", "PostgreSQL", "Redis"],
   },
   {
     category: "DevOps & Tools",
@@ -47,9 +47,9 @@ const skills = [
 ];
 
 const stats = [
-  { value: "10+", label: "Projects Built" },
+  { value: "10+", label: "Projects Built (including hackathons)" },
   { value: "2+", label: "Years Coding" },
-  { value: "4th", label: "Semester" },
+  { value: "4th", label: "Semester " },
   { value: "∞", label: "Cups of Coffee" },
 ];
 
@@ -409,8 +409,7 @@ export default function About() {
               </div>
               <div className="bio-divider" />
               <p className="bio-text">
-                Hey! I'm a <strong>B.Tech student</strong> in Computer Science &
-                Applied Mathematics, currently in my{" "}
+                Hey! I'm a <strong>B.Tech student</strong> , currently in my{" "}
                 <strong>4th semester</strong>. I love building things that live
                 on the internet — from fast, reliable backend systems to clean,
                 thoughtful interfaces.
@@ -418,13 +417,13 @@ export default function About() {
               <p className="bio-text">
                 I'm deeply interested in <strong>system design</strong>,
                 distributed systems, and developer tooling. When I'm not writing
-                code, I'm probably reading about it, tinkering with a side
-                project, or exploring new frameworks.
+                code, I'm probably reading some blogs, tinkering with a side
+                project, exploring new frameworks or chilling with some coffee.
               </p>
               <p className="bio-text">
                 I'm actively looking for{" "}
                 <strong>internships and collaborations</strong> where I can
-                contribute meaningfully and grow alongside smart people.
+                contribute meaningfully and grow.
               </p>
               <a href="#contact" className="bio-cta">
                 Let's connect
@@ -445,7 +444,6 @@ export default function About() {
                 <p className="currently-label">Currently</p>
                 <div className="currently-items">
                   {[
-                    "Studying CS & Applied Mathematics",
                     "Building full-stack projects",
                     "Learning system design & DSA",
                     "Open to internship opportunities",
