@@ -1,0 +1,315 @@
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap");
+
+/* ──────────── Keyframes ──────────── */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+@keyframes scrollPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(6px);
+  }
+}
+@keyframes borderGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--th-btn-primary-glow);
+  }
+  50% {
+    box-shadow: 0 0 20px 2px var(--th-btn-primary-glow);
+  }
+}
+@keyframes pickerIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.anim-1 {
+  animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+.anim-2 {
+  animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+}
+.anim-3 {
+  animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+}
+.anim-4 {
+  animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both;
+}
+.anim-5 {
+  animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
+}
+.anim-6 {
+  animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.85s both;
+}
+.anim-7 {
+  animation: fadeIn 1s ease 1s both;
+}
+
+/* ── Colour token transitions ── */
+#hero,
+#hero * {
+  transition-property:
+    background-color, border-color, color, box-shadow, opacity;
+  transition-duration: 0.45s;
+  transition-timing-function: ease;
+}
+/* keep animations working */
+.gradient-name {
+  transition: none !important;
+}
+
+/* ──────────── Name gradient ──────────── */
+.gradient-name {
+  font-family: "Syne", sans-serif;
+  font-weight: 800;
+  background: linear-gradient(
+    135deg,
+    var(--th-name-grad-start) 0%,
+    var(--th-name-grad-mid) 40%,
+    var(--th-name-grad-end) 70%,
+    var(--th-name-grad-start) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 5s linear infinite;
+}
+
+/* ──────────── Buttons ──────────── */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  background: var(--th-btn-primary-bg);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease !important;
+  animation: borderGlow 3s ease-in-out infinite;
+}
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--th-btn-primary-bg2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.btn-primary:hover::before {
+  opacity: 1;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px var(--th-btn-primary-shadow);
+}
+
+.btn-secondary {
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease !important;
+  border: 1px solid var(--th-btn-secondary-border);
+  color: var(--th-btn-secondary-text);
+}
+.btn-secondary:hover {
+  border-color: var(--th-btn-secondary-hover-border);
+  background: var(--th-btn-secondary-hover-bg);
+  transform: translateY(-2px);
+}
+
+/* ──────────── Socials ──────────── */
+.social-link {
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease !important;
+  border: 1px solid var(--th-social-border);
+  background: var(--th-social-bg);
+  color: var(--th-social-text);
+}
+.social-link:hover {
+  border-color: var(--th-social-hover-border);
+  background: var(--th-social-hover-bg);
+  color: var(--th-social-hover-text);
+  transform: translateY(-3px);
+}
+
+/* ──────────── Tags ──────────── */
+.tag-pill {
+  transition:
+    border-color 0.3s,
+    background 0.3s,
+    color 0.3s !important;
+  background: var(--th-tag-bg);
+  border-color: var(--th-tag-border);
+  color: var(--th-tag-text);
+}
+.tag-pill:hover {
+  background: var(--th-tag-hover-bg);
+  border-color: var(--th-tag-hover-border);
+  color: var(--th-tag-hover-text);
+}
+
+.scroll-dot {
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+.divider-line {
+  background: var(--th-divider);
+}
+.noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+}
+
+/* ═══════════════════════════════════════
+           THEME SWITCHER
+        ═══════════════════════════════════════ */
+.ts-wrap {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  font-family: "DM Sans", sans-serif;
+}
+
+.ts-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: rgba(8, 8, 10, 0.88);
+  backdrop-filter: blur(28px) saturate(1.6);
+  -webkit-backdrop-filter: blur(28px) saturate(1.6);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 18px;
+  padding: 10px;
+  min-width: 158px;
+  max-height: 420px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.65),
+    0 0 0 0.5px rgba(255, 255, 255, 0.04);
+  animation: pickerIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.ts-panel::-webkit-scrollbar {
+  display: none;
+}
+
+.ts-heading {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.22);
+  padding: 4px 10px 6px;
+}
+
+.ts-option {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  transition: background 0.18s ease !important;
+}
+.ts-option:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+.ts-option.active {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.ts-swatch {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.ts-name {
+  font-size: 11.5px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.55);
+  text-transform: uppercase;
+  transition: color 0.18s ease !important;
+}
+.ts-option.active .ts-name {
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 500;
+}
+
+.ts-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  background: rgba(8, 8, 10, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    border-color 0.25s,
+    transform 0.25s !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+}
+.ts-btn:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  transform: scale(1.07);
+}
+
+.ts-dot {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  transition:
+    background 0.4s ease,
+    box-shadow 0.4s ease !important;
+}
