@@ -72,35 +72,24 @@ const stats = [
 const projects = [
   {
     id: "01",
-    title: "Backend Optimisation Case Study",
-    featured: false,
-    description:
-      "Real-time data pipeline that ingests, transforms, and visualizes streaming events. Built with event-driven architecture and WebSocket connections for live dashboards.",
-    tags: ["Typescript", "Redis", "MongoDB", "Node & cache", "Docker", "JEST"],
-    // github: "https://github.com/codetillsleep/notesapp2.0",
-    // live: "https://10gpa.in",
-    image: "/projects/UDS.png",
-  },
-  {
-    id: "02",
     title: "10gpa",
     featured: false,
     description:
-      "Real-time data pipeline that ingests, transforms, and visualizes streaming events. Built with event-driven architecture and WebSocket connections for live dashboards.",
-    tags: ["Typescript", "Redis", "Next.js", "Express", "MongoDB"],
+      "Academic resource platform built for underserved university branches — centralizes notes, PYQs, university-authorized syllabi, and curated video playlists in one place. Fills the gap left by existing platforms that ignore niche engineering branches.",
+    tags: ["Typescript", "Next.js", "Express", "MongoDB", "Redis"],
     github: "https://github.com/codetillsleep/notesapp2.0",
     live: "https://10gpa.in",
     image: "/projects/project-one.png",
   },
   {
-    id: "03",
+    id: "02",
     title: "Nexus",
     featured: false,
     description:
-      "Real-time data pipeline that ingests, transforms, and visualizes streaming events. Built with event-driven architecture and WebSocket connections for live dashboards.",
+      "Real-time chat application with instant messaging, user authentication, and persistent chat history. Built on a WebSocket-driven architecture with a clean dark UI — designed for low-latency communication.",
     tags: ["JavaScript", "React", "Express", "MongoDB", "WebSockets"],
-    github: "https://github.com/yourusername/project-three",
-
+    github: "https://github.com/codetillsleep/Nexus",
+    live: "Not Deployed",
     image: "/projects/image.png",
   },
 ];
@@ -111,4 +100,5 @@ const navLinks = [
   { name: "About", href: "#about" },
   { name: "Contact", href: "#contact" },
 ];
-export { stats, skills, socials, projects, navLinks };
+const ResumeLink = "https://www.google.com/";
+export { stats, skills, socials, projects, navLinks, ResumeLink };

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Code2, Server, Database, GitBranch } from "lucide-react";
 import "./About.css";
+import Image from "next/image";
 import { skills, stats } from "@/app/constants/constants";
 import user from "@/user.json";
 function useInView(threshold = 0.12) {
@@ -24,7 +25,6 @@ function useInView(threshold = 0.12) {
 
   return { ref, inView };
 }
-
 export default function About() {
   const { ref: sectionRef, inView } = useInView(0.08);
   const { ref: skillsRef, inView: skillsInView } = useInView(0.1);

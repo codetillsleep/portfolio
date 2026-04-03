@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X, ExternalLink, Download } from "lucide-react";
-import { navLinks } from "@/app/constants/constants";
+import { navLinks, ResumeLink } from "@/app/constants/constants";
 import "./Navbar.css";
 
 export default function Navbar() {
@@ -46,7 +46,7 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="https://www.google.com/" // replace with your resume link
+              href={ResumeLink}
               target="_blank"
               rel="noopener noreferrer"
               className="nav-resume"

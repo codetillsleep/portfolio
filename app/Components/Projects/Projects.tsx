@@ -134,7 +134,6 @@ function ProjectCard({
             liveUrl={project.live}
           />
         </div>
-        <span className="project-number">{project.id}</span>
       </div>
 
       {/* Content side */}
