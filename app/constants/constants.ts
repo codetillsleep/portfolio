@@ -101,5 +101,5 @@ const navLinks = [
   { name: "Contact", href: "#contact" },
 ];
 const ResumeLink =
-  "https://drive.google.com/file/d/1bRqkbeo48NP0ChcPvl7d5ZNuMAG6NlSy/view?usp=sharing";
+  "https://drive.google.com/file/d/1jbZzhGhAlniB9DqF8dc12DQ4E_boBnc4/view?usp=sharing";
 export { stats, skills, socials, projects, navLinks, ResumeLink };
