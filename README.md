@@ -1,1 +1,4 @@
-readme for Portfolio
+-name
+-about
+-details
+-howtoclone
