@@ -1,5 +1,3 @@
 -name
 -about
--stack
--details
--howtoclone
+
