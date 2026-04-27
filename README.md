@@ -2,9 +2,9 @@
 
 -about
 
--stack
-
 -details
+
+-stack
 
 -how to clone
 
