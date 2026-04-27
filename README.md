@@ -6,5 +6,5 @@
 
 -details
 
--howtoclone
+-how to clone
 
