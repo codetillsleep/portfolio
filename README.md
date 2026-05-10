@@ -7,6 +7,3 @@
 -stack
 
 -how to clone
-
-
-
