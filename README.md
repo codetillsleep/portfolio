@@ -1,6 +1,6 @@
 -name
 
--about
+-aboutMe
 
 -details
 
