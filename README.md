@@ -7,3 +7,5 @@
 -stack
 
 -how to clone
+
+adding resources
