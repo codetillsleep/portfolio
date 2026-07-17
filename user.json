@@ -1,9 +1,9 @@
 {
-  "name": "Saksham sharma",
-  "role": "FullStack Developer",
+  "name": "Saksham Sharma",
+  "role": "Agentic AI Platform Engineer",
   "currentActivities": [
-    "Building full-stack projects",
-    "Learning system design & DSA",
-    "Open to internship opportunities"
+    "Building production Agentic AI systems",
+    "Designing RAG pipelines & multi-agent orchestration",
+    "Implementing safety guardrails & observability-first infrastructure"
   ]
 }

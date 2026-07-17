@@ -4,6 +4,7 @@ import Contact from "./Components/Contact/Contact";
 import Footer from "./Components/Footer/Footer";
 import Hero from "./Components/Hero/Hero";
 import Projects from "./Components/Projects/Projects";
+import Chatbot from "./Components/Chatbot/Chatbot";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
 
       <Contact />
       <Footer />
+      <Chatbot />
     </main>
   );
 }

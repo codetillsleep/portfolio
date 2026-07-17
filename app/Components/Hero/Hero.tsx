@@ -205,7 +205,7 @@ export default function Hero() {
           </div>
 
           <div className="anim-4 flex flex-wrap items-center justify-center gap-2 mb-12">
-            {["B.Tech · CSAM", "MERN", "Next.js"].map((tag) => (
+            {["Agentic AI", "LLMs & RAG", "LangGraph", "Next.js"].map((tag) => (
               <span
                 key={tag}
                 className="tag-pill px-3 py-1 rounded-full border text-xs tracking-wide"

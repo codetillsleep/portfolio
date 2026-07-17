@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Saksham Sharma",
+  title: "Saksham Sharma | Agentic AI Platform Engineer",
   description:
-    "Hey! I'm a B.Tech student, currently in my 4th semester. I love building things that live on the internet — from fast, reliable backend systems to clean, thoughtful interfaces.",
+    "Portfolio of Saksham Sharma, Agentic AI Platform Engineer. Specialized in building production Agentic AI systems, LangGraph, LLM orchestration, and RAG pipelines.",
 };
 
 export default function RootLayout({

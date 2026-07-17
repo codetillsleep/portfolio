@@ -66,21 +66,13 @@ export default function About() {
               </div>
               <div className="bio-divider" />
               <p className="bio-text">
-                Hey! I'm a <strong>B.Tech student</strong> , currently in my{" "}
-                <strong>4th semester</strong>. I love building things that live
-                on the internet — from fast, reliable backend systems to clean,
-                thoughtful interfaces.
+                Hey! I'm a <strong>B.Tech student currently in my 4th semester</strong>, focused on designing and shipping production-grade agentic AI systems, RAG pipelines, and multi-agent workflows.
               </p>
               <p className="bio-text">
-                I'm deeply interested in <strong>system design</strong>,
-                distributed systems, and developer tooling. When I'm not writing
-                code, I'm probably reading some blogs, tinkering with a side
-                project, exploring new frameworks or chilling with some coffee.
+                I am deeply experienced with <strong>LangGraph, LangChain, RAG pipelines</strong>, and RAGAS evaluation frameworks. I design safety guardrails, policy controls, and prompt layers to ensure compliant, reliable agent operation.
               </p>
               <p className="bio-text">
-                I'm actively looking for{" "}
-                <strong>internships and collaborations</strong> where I can
-                contribute meaningfully and grow.
+                I'm passionate about <strong>observability-first architectures</strong>, system design, and MLOps. I am always exploring the cutting edge of LLMs, agentic workflows, and multi-agent orchestration.
               </p>
               <a href="#contact" className="bio-cta">
                 Let's connect
