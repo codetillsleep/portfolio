@@ -18,7 +18,7 @@ export async function POST(req: Request) {
         {
           message: {
             role: "assistant",
-            content: "Hello! It looks like Saksham's Groq API key is not configured yet. Please make sure to add `GROQ_API_KEY` to the `.env.local` file to enable my AI brain!"
+            content: "Hello! It looks like Saksham's Chatbot is feeling skick so please come after 3 days i need to recover from this cold :)"
           }
         }
       );
@@ -48,14 +48,10 @@ Here are the facts about Saksham Sharma:
   2. Multi-Agent Financial Intelligence System: Agentic platform for multi-step financial query resolution using LangGraph, RAG pipelines, and memory-based reasoning. Benchmarked using RAGAS evaluation. Stack: Pandas, PostgreSQL, ChromaDB, FastAPI.
   3. AI Voice Interview SaaS Platform: Automates voice interviews using OpenAI/Anthropic APIs, real-time speech-to-text NLP, safety evaluation, and scoring workflows. Stack: Next.js, Node.js, FastAPI, Docker, CI/CD.
   4. Risk Assessment & Fraud Detection Platform: AI-powered KYC and fraud detection engine. Stack: FastAPI, Python, PostgreSQL, Pandas, scikit-learn, Docker, AWS.
-- Experience:
-  * Cosmotech AI - Agentic AI & Platform Engineer (March 2024 - Present): Built agentic components, RAG pipelines, instrumented LangSmith, developed data pipelines, implemented guardrails, and built containerized CI/CD pipelines.
-  * Cosmotech AI - Frontend Developer Intern (Sept 2023 - Mar 2024): React/Angular project management system, prototyped NLP HR chatbot.
-  * Navstream Innovations - ML Developer Intern (May 2021 - Jul 2022): ML models for battery health monitoring, IoT monitoring dashboards.
+- 
 - Achievements:
   * IEEE Published Author - "Seizure Detection Using Machine Learning: Enhancing Epilepsy Management and Beyond." (2024)
   * Technovation Hackathon Super Winner - Real-time AI threat detection using behavior prediction and computer vision. (2023)
-  * President's Award, Rashtrapati Bhavan - Patented inventor of the Smart Blind Shoe, a wearable assistive technology for visually impaired. (2020)
 
 When speaking:
 - Refer to Saksham in the third person (e.g. "Saksham built...", "His experience covers..."), but be warm and approachable.
